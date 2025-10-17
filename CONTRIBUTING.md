@@ -3,7 +3,7 @@
 ## Building the site
 
 The registry site uses [jekyll](https://jekyllrb.com/),
-a Ruby based static site generator, with the Dinky theme.
+a Ruby based static site generator, with the [Just the Docs](https://github.com/just-the-docs/just-the-docs) theme.
 
 ### Docker dev
 
@@ -18,15 +18,15 @@ docker run -v $(pwd):/site -p 4000:4000 oas-spec/latest
 
 You will need to set up Ruby locally to run the server and see your changes.
 
-``` bash
+```bash
 gem install bundler
 bundle install
 ```
 
 With all the gems (dependencies) installed, you can launch the jekyll server.
 
-``` bash
-bundle exec jekyll serve
+```bash
+bundle exec jekyll serve --livereload
 ```
 
 It will show output like this, and you can grab the Server address
@@ -50,11 +50,11 @@ Specification Extension namespace or a specific OpenAPI
 Specification Extension),
 fork this repository in GitHub.
 Make a local clone of your fork and check out the
-`gh-pages` branch.
+`main` branch.
 
-### Add a New Extension Namespace  Registry Entry
+### Add a New Extension Namespace Registry Entry
 
-Working in the `gh-pages` branch,
+Working in the `main` branch,
 add a new Markdown file in `registries/_namespace/`. The file name
 should be the namespace name with a `.md` extension, without the `x-`
 prefix.
@@ -64,7 +64,7 @@ replacing the instruction text in `<<instruction-text>>` markers:
 
 ```md
 ---
-owner: <<Your-GutHub-username>>
+owner: <<Your-GitHub-username>>
 issue:
 description: <<Briefly describe your namespace>>
 layout: default
@@ -76,13 +76,12 @@ The `x-{{page.slug}}-` prefix is reserved for extensions created by
 {% endcapture %}
 
 {% include namespace-entry.md summary=summary %}
-
 ```
 
 You may use [GitHub Flavored Markdown](https://github.github.com/gfm/)
 in the short and long descriptions.
 
-See [oai.md](https://raw.githubusercontent.com/OAI/OpenAPI-Specification/refs/heads/gh-pages/registries/_namespace/oai.md)
+See [oai.md](https://github.com/OAI/spec.openapis.org/blob/main/registries/_namespace/oai.md?plain=1)
 for an example for the `x-oai-*` namespace.
 
 Next, locally build
@@ -111,7 +110,7 @@ replacing the instruction text in `<<instruction-text>>` markers:
 
 ```md
 ---
-owner: <<Your-GutHub-username>>
+owner: <<Your-GitHub-username>>
 issue:
 description: <<Brief description of your Specification Extension>>.
 schema:
@@ -140,7 +139,7 @@ Used by: (informational)
 You may use [GitHub Flavored Markdown](https://github.github.com/gfm/)
 in the short and long descriptions.
 
-See [x-twitter.md](https://raw.githubusercontent.com/OAI/OpenAPI-Specification/refs/heads/gh-pages/registries/_extension/x-twitter.md)
+See [x-twitter.md](https://github.com/OAI/spec.openapis.org/blob/main/registries/_extension/x-twitter.md?plain=1)
 for an example.
 
 Build the site locally as described above.
@@ -157,10 +156,10 @@ and the __Description__ should be your brief description.
 ### Submitting
 
 When you have verified your content renders correctly,
-submit a Pull Request against the `gh-pages` branch
-of `git@github.com:OAI/OpenAPI-Specification.git`.
+submit a Pull Request against the `main` branch
+of https://github.com/OAI/spec.openapis.org.
 Committers will review the PR and you may be asked
 to update the PR. When approved, committers
-will merge your PR into `git@github.com:OAI/OpenAPI-Specification.git`
+will merge your PR,
 and the merge actions will publish your changes to
 [https://spec.openapis.org/registry/](https://spec.openapis.org/registry/).
