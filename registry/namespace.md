@@ -2,7 +2,7 @@
 title: Namespace Registry
 layout: default
 permalink: /registry/namespace/index.html
-parent: Registry
+parent: Registries
 ---
 
 # Namespace Registry

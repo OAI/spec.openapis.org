@@ -2,7 +2,7 @@
 title: Draft Feature Registry
 layout: default
 permalink: /registry/draft-feature/index.html
-parent: Registry
+parent: Registries
 ---
 
 # Draft Features Registry

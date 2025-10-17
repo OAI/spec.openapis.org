@@ -2,7 +2,7 @@
 title: Tag Kinds Registry
 layout: default
 permalink: /registry/tag-kind/index.html
-parent: Registry
+parent: Registries
 ---
 
 # Tag Kinds Registry
