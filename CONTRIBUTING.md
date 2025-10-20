@@ -3,7 +3,7 @@
 ## Building the site
 
 The registry site uses [jekyll](https://jekyllrb.com/),
-a Ruby based static site generator, with the [Just the Docs](https://github.com/just-the-docs/just-the-docs) theme.
+a Ruby based static site generator, with [Just the Docs](https://github.com/just-the-docs/just-the-docs).
 
 ### Docker dev
 
