@@ -2,7 +2,7 @@
 title: Tag Kinds Registry
 layout: default
 permalink: /registry/tag-kind/index.html
-parent: Registry
+parent: Registries
 ---
 
 # Tag Kinds Registry
@@ -13,7 +13,7 @@ The `kind` addition to OpenAPI tags is planned for release in OpenAPI 3.2, so su
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) or [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to contribute or discuss a registry value.
+Please raise a [Pull-Request](https://github.com/OAI/spec.openapis.org/pulls) or [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to contribute or discuss a registry value.
 
 ## Values
 

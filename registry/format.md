@@ -2,7 +2,7 @@
 title: Format Registry
 layout: default
 permalink: /registry/format/index.html
-parent: Registry
+parent: Registries
 ---
 
 # Formats Registry
@@ -17,7 +17,7 @@ The registry SHOULD NOT contain two entries that have the same meaning, unless a
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) or [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to contribute or discuss a registry value.
+Please raise a [Pull-Request](https://github.com/OAI/spec.openapis.org/pulls) or [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to contribute or discuss a registry value.
 
 ## Values
 

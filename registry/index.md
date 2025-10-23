@@ -2,15 +2,6 @@
 title: Registries
 layout: default
 permalink: /registry/index.html
-has_children: true
-children:
-- title: Alternative Schema Type Registry
-- title: Draft Features Registry
-- title: Specification Extension Registry
-- title: Format Registry
-- title: Media Type Registry
-- title: Namespace Registry
-- title: Tag Kinds Registry
 has_toc: false
 ---
 
@@ -18,7 +9,7 @@ has_toc: false
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) against the `gh-pages` branch and add a new Markdown file to a folder in the `registries/_{registryName}`. The name of the file is considered the registration entry, ignoring the file extension. Alternatively you can open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to discuss a registry value.
+Please raise a [Pull-Request](https://github.com/OAI/spec.openapis.org/pulls) against the `main` branch and add a new Markdown file to a folder in the `registries/_{registryName}`. The name of the file is considered the registration entry, ignoring the file extension. Alternatively you can open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to discuss a registry value.
 
 ### Contents
 

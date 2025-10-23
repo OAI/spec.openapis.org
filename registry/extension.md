@@ -2,7 +2,7 @@
 # title: Extensions Registry
 layout: default
 permalink: /registry/extension/index.html
-parent: Registry
+parent: Registries
 ---
 
 # Extensions Registry
@@ -13,9 +13,9 @@ parent: Registry
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/OpenAPI-Specification/pulls) and
-follow the instructions in the
-[`CONTRIBUTING.md` file in the `gh-pages` branch](https://github.com/OAI/OpenAPI-Specification/blob/gh-pages/CONTRIBUTING.md),
+Please raise a [Pull-Request](https://github.com/OAI/spec.openapis.org/pulls) and
+follow the instructions in
+[`CONTRIBUTING.md`](https://github.com/OAI/spec.openapis.org/blob/main/CONTRIBUTING.md),
 or open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues)
 to contribute or discuss a registry value.
 

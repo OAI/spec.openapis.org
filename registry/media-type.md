@@ -2,7 +2,7 @@
 title: Media Type Registry
 layout: default
 permalink: /registry/media-type/index.html
-parent: Registry
+parent: Registries
 ---
 
 # Media Type Registry
