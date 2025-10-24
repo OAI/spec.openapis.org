@@ -9,7 +9,7 @@ source: https://pubs.opengroup.org/onlinepubs/9799919799/
 ---
 
 {% capture summary %}
-The `{{page.slug}}` format represents seconds since Jan 1st 1970 - defined as 4.19 Seconds Since the Epoch - [IEEE1003.1-2024/POSIX.1-2024](https://pubs.opengroup.org/onlinepubs/9799919799/). This format entry is to ensure future versions of OpenAPI maintain compatibility with [OpenAPI 3.0.x](https://spec.openapis.org/oas/v3.0.0).
+The `{{page.slug}}` format represents seconds since Jan 1st 1970 - defined as 4.19 Seconds Since the Epoch - [IEEE1003.1-2024/POSIX.1-2024](https://pubs.opengroup.org/onlinepubs/9799919799/).
 {% endcapture %}
 
 {% include format-entry.md summary=summary %}
