@@ -13,7 +13,7 @@ parent: Registries
 
 ## Contributing
 
-Please raise a [Pull-Request](https://github.com/OAI/spec.openapis.org/pulls) or [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to contribute or discuss a registry value.
+Please open an [Issue](https://github.com/OAI/OpenAPI-Specification/issues) to discuss a registry value.
 
 ## Values
 
