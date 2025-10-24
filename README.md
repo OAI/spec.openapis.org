@@ -1,6 +1,6 @@
 # OpenAPI Initiative Registry
 
-This site contains the OpenAPI Initiative Registry and content for the HTML versions of specifications managed by the OpenAPI Initiative such as the OpenAPI Specification and the Arazzo Specification.
+This site contains the OpenAPI Initiative Registry and content for the HTML versions of specifications managed by the OpenAPI Initiative such as the Arazzo Specification the OpenAPI Specification, and the Overlay Specification.
 
 ## Registry
 
@@ -8,10 +8,11 @@ This site contains the OpenAPI Initiative Registry and content for the HTML vers
 
 ## OpenAPI Initiative Specifications
 
-| Specification  | Markdown Repository | Versions |
+| Specification  | Markdown Repository | Published Versions |
 | :--------------| :------------------ | :------- |
-| OpenAPI Specification | [View](https://github.com/OAI/OpenAPI-Specification)|[**3.1.0**](https://spec.openapis.org/oas/v3.1.0.html)<br> [**3.0.3**](https://spec.openapis.org/oas/v3.0.3.html), [3.0.2](https://spec.openapis.org/oas/v3.0.2.html), [3.0.1](https://spec.openapis.org/oas/v3.0.1.html), [3.0.0](https://spec.openapis.org/oas/v3.0.0.html)<br> [**2.0**](https://spec.openapis.org/oas/v2.0.html) |
-| Arazzo Specification | [View](https://github.com/OAI/Arazzo-Specification) | [1.0.0](https://spec.openapis.org/arazzo/v1.0.0.html) |
+| Arazzo Specification | [View](https://github.com/OAI/Arazzo-Specification) | [View](https://spec.openapis.org/arazzo/) |
+| OpenAPI Specification | [View](https://github.com/OAI/OpenAPI-Specification) | [View](https://spec.openapis.org/oas/) |
+| Overlay Specification | [View](https://github.com/OAI/Overlay-Specification) | [View](https://spec.openapis.org/overlay/) |
 
 ## Development
 
