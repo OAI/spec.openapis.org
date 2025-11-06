@@ -90,6 +90,79 @@ pre {
   background-color: var(--code-bg);
 }
 
+/* Syntax highlighting styles */
+.hljs,
+pre.nohighlight,
+pre code {
+  background-color: var(--code-bg);
+}
+
+/* Dark mode syntax highlighting color adjustments */
+@media (prefers-color-scheme: dark) {
+  .hljs {
+    color: #e6e1e8;
+  }
+  
+  .hljs-comment,
+  .hljs-meta {
+    color: #8a8a8a;
+  }
+  
+  .hljs-string,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-strong,
+  .hljs-emphasis,
+  .hljs-quote {
+    color: #f5ab78;
+  }
+  
+  .hljs-number {
+    color: #7dd3c0;
+  }
+  
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-type {
+    color: #f286c4;
+  }
+  
+  .hljs-literal,
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-attribute {
+    color: #6fc3df;
+  }
+  
+  .hljs-section,
+  .hljs-name {
+    color: #97D700;
+  }
+  
+  .hljs-tag {
+    color: #e6e1e8;
+  }
+  
+  .hljs-title,
+  .hljs-attr,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo {
+    color: #bb9af7;
+  }
+  
+  .hljs-addition {
+    color: #7dd3c0;
+    background-color: rgba(125, 211, 192, 0.1);
+  }
+  
+  .hljs-deletion {
+    color: #f38ba8;
+    background-color: rgba(243, 139, 168, 0.1);
+  }
+}
+
 /* Navigation styling using CSS variables */
 .navigation,
 .nav-list .nav-list-item > a,
