@@ -12,6 +12,8 @@
   --search-bg: #fff;
   --base-button: #f7f7f7;
   --nav-text: #5c5962;
+  --nav-highlight: #eeebee;
+  --aux-nav-bg: #fff;
 }
 
 /* Dark mode colors - applied when OS prefers dark mode */
@@ -28,6 +30,8 @@
     --search-bg: #302d36;
     --base-button: #302d36;
     --nav-text: #e6e1e8;
+    --nav-highlight: #44434d;
+    --aux-nav-bg: #27262b;
   }
 }
 
@@ -100,6 +104,21 @@ pre {
 
 .search-result-section {
   color: var(--body-text);
+}
+
+/* Auxiliary navigation (top right links) */
+.site-header .aux-nav,
+.aux-nav {
+  background-color: var(--aux-nav-bg);
+}
+
+/* Navigation item highlighting/selection */
+.nav-list-item.active > .nav-list-link,
+.nav-list-item .nav-list-link.active,
+.nav-list .nav-list-item > .nav-list-expander:hover,
+.nav-list .nav-list-item > .nav-list-link:hover,
+.nav-list-item.active {
+  background-color: var(--nav-highlight);
 }
 
 /*.nav-list-link {
