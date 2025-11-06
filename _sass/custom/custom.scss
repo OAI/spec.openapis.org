@@ -1,12 +1,109 @@
-h1,h2,h3,h4,h5,h6 { color: #4E5B31; }
+/* Define CSS custom properties for theme colors */
+:root {
+  /* Light mode colors (default) */
+  --body-bg: #fff;
+  --body-text: #5c5962;
+  --body-heading: #4E5B31;
+  --link: #6BA539;
+  --sidebar-bg: #f5f6fa;
+  --code-bg: #f5f6fa;
+  --border: #eeebee;
+  --table-bg: #fff;
+  --search-bg: #fff;
+  --base-button: #f7f7f7;
+}
 
-a[href] { color: #6BA539; }
+/* Dark mode colors - applied when OS prefers dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg: #27262b;
+    --body-text: #e6e1e8;
+    --body-heading: #97D700;
+    --link: #97D700;
+    --sidebar-bg: #27262b;
+    --code-bg: #31343f;
+    --border: #44434d;
+    --table-bg: #302d36;
+    --search-bg: #302d36;
+    --base-button: #302d36;
+  }
+}
+
+/* Apply custom properties to elements */
+body {
+  background-color: var(--body-bg) !important;
+  color: var(--body-text) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--body-heading) !important;
+}
+
+a[href] {
+  color: var(--link) !important;
+}
+
+.site-nav,
+.side-bar {
+  background-color: var(--sidebar-bg) !important;
+}
+
+code {
+  background-color: var(--code-bg) !important;
+}
+
+.site-footer {
+  background-color: var(--sidebar-bg) !important;
+}
+
+table {
+  background-color: var(--table-bg) !important;
+}
+
+.search-input {
+  background-color: var(--search-bg) !important;
+  color: var(--body-text) !important;
+}
+
+.btn {
+  background-color: var(--base-button) !important;
+}
+
+pre {
+  background-color: var(--code-bg) !important;
+}
+
+/* Ensure proper border colors in dark mode */
+@media (prefers-color-scheme: dark) {
+  table, th, td, 
+  .site-footer,
+  .site-header {
+    border-color: var(--border) !important;
+  }
+  
+  /* Improve readability of navigation in dark mode */
+  .navigation,
+  .nav-list .nav-list-item > a,
+  .nav-list .nav-list-item .nav-list-link {
+    color: var(--body-text) !important;
+  }
+  
+  /* Search results styling for dark mode */
+  .search-result-doc-title {
+    color: var(--body-heading) !important;
+  }
+  
+  .search-result-section {
+    color: var(--body-text) !important;
+  }
+}
 
 /*.nav-list-link {
    text-transform: lowercase;
 }*/
 
 /* OAI greens 
-6BA539
-4E5B31
-97D700 */
+6BA539 - Primary green
+4E5B31 - Dark green
+97D700 - Bright green (dark mode)
+*/
