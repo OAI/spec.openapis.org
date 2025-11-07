@@ -1,6 +1,9 @@
 # Repo
 * @oai/tsc @OAI/arazzo-maintainers @OAI/openapi-maintainers @OAI/overlay-maintainers
 
+# Registries
+/registries/ @OAI/tsc
+
 # Specifications
 /arazzo/ @OAI/tsc @OAI/arazzo-maintainers
 /oas/ @OAI/tsc @OAI/openapi-maintainers
