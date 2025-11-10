@@ -10,7 +10,7 @@ layout: default
 ---
 
 {% capture summary %}
-The `x-oai-traits` extension is used identify places in an OpenAPI Description where Overlay updates should be applied. Its value is an array of strings, each string identifying a feature that an Overlay should apply.
+The `x-oai-traits` extension is used to identify places in an OpenAPI Description where Overlay updates should be applied. Its value is an array of strings, each string identifying a feature that an Overlay should apply.
 {% endcapture %}
 
 {% capture example %}
