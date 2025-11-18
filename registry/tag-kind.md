@@ -9,7 +9,7 @@ parent: Registries
 
 ## Supporting Versions
 
-OpenAPI 3.2 introduced a hierarchical tag concept by adding a `kind` property to a [Tag Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.2.0.md#tag-object). Support for the values in this registry should not be expected until tools add support for the 3.2 version.
+OpenAPI 3.2 added more structure to tags, including by adding a `kind` property to a [Tag Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.2.0.md#tag-object). Support for the values in this registry should not be expected until tools add support for the 3.2 version.
 
 ## Contributing
 
