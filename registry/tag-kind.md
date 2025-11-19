@@ -7,9 +7,9 @@ parent: Registries
 
 # Tag Kinds Registry
 
-## Unreleased feature
+## Supporting Versions
 
-The `kind` addition to OpenAPI tags is planned for release in OpenAPI 3.2, so support for the values here should not be expected until tools officially support the 3.2 version.
+OpenAPI 3.2 added more structure to tags, including by adding a `kind` property to a [Tag Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.2.0.md#tag-object). Support for the values in this registry should not be expected until tools add support for the 3.2 version.
 
 ## Contributing
 
