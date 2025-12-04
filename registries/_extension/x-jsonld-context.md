@@ -27,7 +27,7 @@ This extension is defined in [draft-polli-restapi-ld-keywords](https://datatrack
 
 {% capture example %}
 ```yaml
-openapi: 3.0.0
+openapi: 3.2.0
 ...
 components:
   schemas:
