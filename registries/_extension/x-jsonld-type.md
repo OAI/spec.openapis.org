@@ -39,7 +39,7 @@ components:
         givenName: "John"
 ```
 
-Used by:
+Used by: (informational)
 
 * Italian Agencies
 * https://schema.gov.it
