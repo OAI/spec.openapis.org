@@ -1,0 +1,21 @@
+<meta name="color-scheme" content="light dark">
+<script>
+/**
+ * Sets the theme based on the media query match info.
+ * @param {MediaQueryListEvent|MediaQueryList} info - The media query match info. 
+ */
+function setThemeFromMatch(info)
+{
+	if (!window.jtd || !info)
+		return;
+	jtd.setTheme(info.matches ? "dark" : "light");
+}
+const mediaQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+if (mediaQuery)
+{
+	setThemeFromMatch(mediaQuery);
+	mediaQuery.addEventListener('change', event => {
+		setThemeFromMatch(event);
+	});
+}
+</script>
