@@ -6,7 +6,7 @@ gem "jekyll", "~> 4.4"
 gem "webrick", "~> 1.9"
 gem "jekyll-remote-theme"
 gem "jekyll-include-cache", "~>0.2.1"
-gem "just-the-docs", "~> 0.10.2"
+gem "just-the-docs", "~> 0.11.0"
 
 group :jekyll_plugins do
   gem "jekyll-sitemap", "~> 1.4"

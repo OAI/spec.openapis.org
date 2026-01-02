@@ -59,7 +59,7 @@ GEM
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     json (2.18.0)
-    just-the-docs (0.10.2)
+    just-the-docs (0.11.0)
       jekyll (>= 3.8.5)
       jekyll-include-cache
       jekyll-seo-tag (>= 2.0)
@@ -104,7 +104,7 @@ DEPENDENCIES
   jekyll-include-cache (~> 0.2.1)
   jekyll-remote-theme
   jekyll-sitemap (~> 1.4)
-  just-the-docs (~> 0.10.2)
+  just-the-docs (~> 0.11.0)
   webrick (~> 1.9)
 
 BUNDLED WITH
