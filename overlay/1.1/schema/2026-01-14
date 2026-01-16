@@ -1,12 +1,12 @@
 {
-  "$id": "https://spec.openapis.org/overlay/1.0/schema/2024-10-22",
+  "$id": "https://spec.openapis.org/overlay/1.1/schema/2026-01-14",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "The description of Overlay v1.0.x documents",
+  "description": "The description of Overlay v1.1.x documents",
   "type": "object",
   "properties": {
     "overlay": {
       "type": "string",
-      "pattern": "^1\\.0\\.\\d+$"
+      "pattern": "^1\\.1\\.\\d+$"
     },
     "info": {
       "$ref": "#/$defs/info-object"
@@ -40,6 +40,9 @@
         },
         "version": {
           "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       },
       "required": [
@@ -67,6 +70,9 @@
             "number",
             "null"
           ]
+        },
+        "copy": {
+          "type": "string"
         },
         "remove": {
           "type": "boolean",
