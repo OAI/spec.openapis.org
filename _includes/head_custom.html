@@ -1,4 +1,14 @@
 <meta name="color-scheme" content="light dark">
+<script>
+// Prevent flickering by applying theme before page renders
+// This must run before other scripts load
+(function() {
+	const storedTheme = localStorage.getItem('theme');
+	if (storedTheme === 'dark') {
+		document.documentElement.setAttribute('data-color-scheme', 'dark');
+	}
+})();
+</script>
 <script type="module">
 const darkThemeName = "dark";
 const lightThemeName = "light";
