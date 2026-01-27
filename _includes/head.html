@@ -1,0 +1,87 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script>
+	// Prevent flickering by applying theme before page renders
+	// This must run before other scripts load
+	(function () {
+		const storedTheme = localStorage.getItem('theme');
+		if (storedTheme === 'dark') {
+			document.documentElement.setAttribute('data-color-scheme', 'dark');
+		} else if (storedTheme === 'light') {
+			document.documentElement.setAttribute('data-color-scheme', 'light');
+		}
+	})();
+</script>
+<link rel="stylesheet" href="/assets/css/just-the-docs-dark.css">
+<link rel="stylesheet" href="/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet" disabled="">
+<style id="jtd-nav-activation">
+	.site-nav>ul.nav-list:first-child>li>a,
+	.site-nav>ul.nav-list:first-child>li>ul>li:not(:nth-child(1))>a,
+	.site-nav>ul.nav-list:first-child>li>ul>li>ul>li a {
+		background-image: none;
+	}
+
+	.site-nav>ul.nav-list:not(:first-child) a,
+	.site-nav li.external a {
+		background-image: none;
+	}
+
+	.site-nav>ul.nav-list:first-child>li:nth-child(5)>ul>li:nth-child(1)>a {
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.site-nav>ul.nav-list:first-child>li:nth-child(5)>button svg,
+	.site-nav>ul.nav-list:first-child>li:nth-child(5)>ul>li:nth-child(1)>button svg {
+		transform: rotate(-90deg);
+	}
+
+	.site-nav>ul.nav-list:first-child>li.nav-list-item:nth-child(5)>ul.nav-list,
+	.site-nav>ul.nav-list:first-child>li.nav-list-item:nth-child(5)>ul.nav-list>li.nav-list-item:nth-child(1)>ul.nav-list {
+		display: block;
+	}
+</style>
+<script src="/assets/js/vendor/lunr.min.js"></script>
+<script src="/assets/js/just-the-docs.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" type="image/x-icon"> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Alternative Schema Registry | OpenAPI Initiative Publications</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="Alternative Schema Registry">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Specifications, registries, and schemas">
+<meta property="og:description" content="Specifications, registries, and schemas">
+<link rel="canonical" href="http://0.0.0.0:4000/registry/alternative-schema/">
+<meta property="og:url" content="http://0.0.0.0:4000/registry/alternative-schema/">
+<meta property="og:site_name" content="OpenAPI Initiative Publications">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Alternative Schema Registry">
+<script
+	type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","description":"Specifications, registries, and schemas","headline":"Alternative Schema Registry","url":"http://0.0.0.0:4000/registry/alternative-schema/"}</script>
+<!-- End Jekyll SEO tag -->
+<meta name="color-scheme" content="light dark">
+<script type="module">
+	const darkThemeName = "dark";
+	const lightThemeName = "light";
+	/** * Sets the theme based on the media query match info.
+	 * @param {MediaQueryListEvent|MediaQueryList} info - The media query match info.
+	*/
+	function setThemeFromMatch(info) {
+		if (!info) return; 
+		const newTheme = info.matches ? darkThemeName : lightThemeName;
+		localStorage.setItem('theme', newTheme);
+		if (!window.jtd) return;
+		const currentTheme = jtd.getTheme();
+		if ((info.matches && currentTheme === darkThemeName) || (!info.matches && currentTheme === lightThemeName)) return; 
+		jtd.setTheme(newTheme);
+
+	} 
+	const mediaQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+	if (mediaQuery) { 
+		setThemeFromMatch(mediaQuery);
+		mediaQuery.addEventListener('change', event => { 
+			setThemeFromMatch(event);
+		 }); 
+	}
+</script>
