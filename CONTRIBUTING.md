@@ -10,8 +10,7 @@ a Ruby based static site generator, with [Just the Docs](https://github.com/just
 You can use the following Docker command to build and serve the site:
 
 ```shell
-docker build . -t oas-spec/latest
-docker run -v $(pwd):/site -p 4000:4000 oas-spec/latest
+docker run -p 4000:4000 -v $(pwd):/site bretfisher/jekyll-serve
 ```
 
 ### Local Ruby dev
