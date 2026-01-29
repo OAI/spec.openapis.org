@@ -1,0 +1,16 @@
+---
+title: Media Type Group API
+parent: API
+---
+{
+{% for page in site.media-type %}"{{ page.slug }}": {
+  "slug": "{{ page.slug }}",
+  "name": "{{ page.name }}",
+  "description": "{{ page.description }}",
+  "url": "{{ site.baseurl }}{{ page.url }}",
+  "owner": "{{ page.owner }}",
+  "media-types": {{ page.media_types | jsonify }},
+  "references": {{ page.references | jsonify }}
+}{% unless forloop.last %},{% endunless %}
+{% endfor %}
+}
