@@ -3,6 +3,6 @@ title: Registries API
 parent: API
 ---
 [
-{% for collection in site.collections %}"{{ collection.slug }}"{% unless forloop.last %},{% endunless %}
-{% endfor %}
+{% for collection in site.collections %}{% unless collection.hidden %}"{{ collection.slug }}"{% unless forloop.last %}{% # hoping the last registry is not hidden %},{% endunless %}
+{% endunless %}{% endfor %}
 ]
