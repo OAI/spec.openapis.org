@@ -42,6 +42,8 @@ Configuration file: /site/_config.yml
     Server address: http://0.0.0.0:4000
 ```
 
+This may show a warning "GitHub Metadata: No GitHub API authentication could be found.". Just ignore it or see https://github.com/jekyll/github-metadata/blob/main/docs/authentication.md#authentication on how to avoid it.
+
 ## Adding New Entries to the Registries
 
 To add a new entry to the registries (either an OpenAPI
