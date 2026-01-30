@@ -12,8 +12,9 @@
 		}
 	})();
 </script>
-<link rel="stylesheet" href="/assets/css/just-the-docs-dark.css">
-<link rel="stylesheet" href="/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet" disabled="">
+<link rel="stylesheet" href="/assets/css/just-the-docs-dark.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="/assets/css/just-the-docs-default.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
 <style id="jtd-nav-activation">
 	.site-nav>ul.nav-list:first-child>li>a,
 	.site-nav>ul.nav-list:first-child>li>ul>li:not(:nth-child(1))>a,
@@ -45,20 +46,37 @@
 <script src="/assets/js/just-the-docs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico" type="image/x-icon"> <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Alternative Schema Registry | OpenAPI Initiative Publications</title>
-<meta name="generator" content="Jekyll v4.4.1">
-<meta property="og:title" content="Alternative Schema Registry">
+<title>{{ page.title | default: site.title | escape }}</title>
+<meta name="generator" content="Jekyll v{{ jekyll.version }}">
+<meta property="og:title" content="{{ page.title | default: site.title | escape }}" />
 <meta property="og:locale" content="en_US">
-<meta name="description" content="Specifications, registries, and schemas">
-<meta property="og:description" content="Specifications, registries, and schemas">
-<link rel="canonical" href="http://0.0.0.0:4000/registry/alternative-schema/">
-<meta property="og:url" content="http://0.0.0.0:4000/registry/alternative-schema/">
+<meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 | default: site.description }}">
+<meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 | default: site.description }}" />
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+{%- assign og_image = page.image | default: site.image -%}
+<meta property="og:image" content="{{ site.url }}{{ og_image }}" />
+<meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:site_name" content="OpenAPI Initiative Publications">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="Alternative Schema Registry">
+<meta property="twitter:title" content="{{ page.title | default: site.title | escape }}" />
 <script
-	type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","description":"Specifications, registries, and schemas","headline":"Alternative Schema Registry","url":"http://0.0.0.0:4000/registry/alternative-schema/"}</script>
+	type="application/ld+json"> {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "description": "{{ site.description }}",
+  "headline": "{{ page.title | default: site.title }}",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "publisher": {
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/assets/images/OpenAPI_Logo_Pantone-1.png"
+    }
+  }
+}
+</script>
 <!-- End Jekyll SEO tag -->
 <meta name="color-scheme" content="light dark">
 <script type="module">
@@ -71,6 +89,7 @@
 		if (!info) return; 
 		const newTheme = info.matches ? darkThemeName : lightThemeName;
 		localStorage.setItem('theme', newTheme);
+		document.documentElement.setAttribute('data-color-scheme', newTheme);
 		if (!window.jtd) return;
 		const currentTheme = jtd.getTheme();
 		if ((info.matches && currentTheme === darkThemeName) || (!info.matches && currentTheme === lightThemeName)) return; 
