@@ -12,7 +12,8 @@
 		}
 	})();
 </script>
-<link rel="stylesheet" href="/assets/css/just-the-docs-dark.css">
+<link rel="stylesheet" href="/assets/css/just-the-docs-dark.css" id="jtd-dark-stylesheet" disabled="">
+<link rel="stylesheet" href="/assets/css/just-the-docs-default.css" id="jtd-default-stylesheet" disabled="">
 <link rel="stylesheet" href="/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet" disabled="">
 <style id="jtd-nav-activation">
 	.site-nav>ul.nav-list:first-child>li>a,
@@ -71,6 +72,8 @@
 		if (!info) return; 
 		const newTheme = info.matches ? darkThemeName : lightThemeName;
 		localStorage.setItem('theme', newTheme);
+		document.getElementById('jtd-dark-stylesheet').disabled = !info.matches;
+		document.getElementById('jtd-default-stylesheet').disabled = info.matches;
 		if (!window.jtd) return;
 		const currentTheme = jtd.getTheme();
 		if ((info.matches && currentTheme === darkThemeName) || (!info.matches && currentTheme === lightThemeName)) return; 
