@@ -2,7 +2,8 @@
 title: Registries API
 parent: API
 ---
+{% assign registries = site.collections | sort: 'order' %}
 [
-{% for collection in site.collections %}{% unless collection.hidden %}"{{ collection.slug }}"{% unless forloop.last %}{% comment %}hoping the last registry is not hidden{% endcomment %},{% endunless %}
+{% for registry in registries %}{% unless registry.hidden %}"{{ registry.slug }}"{% unless forloop.last %}{% comment %}hoping the last registry is not hidden{% endcomment %},{% endunless %}
 {% endunless %}{% endfor %}
 ]

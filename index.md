@@ -24,5 +24,7 @@ Each specification page lists all published specification versions and official 
 The [Registry Page](./registry/index.html) includes documentation as well as API and RSS access for all registries
 
 Registry shortcuts:
-{% for registry in site.collections %}{% unless registry.hidden %}
+
+{% assign registries = site.collections | sort: 'order' %}
+{% for registry in registries %}{% unless registry.hidden %}
 * <a href="registry/{{ registry.slug }}">{{ registry.name }}</a>{% endunless %}{% endfor %}
