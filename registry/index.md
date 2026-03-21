@@ -13,12 +13,13 @@ Please raise a [Pull-Request](https://github.com/OAI/spec.openapis.org/pulls) ag
 
 ### Contents
 
-{% for registry in site.collections %}{% unless registry.hidden %}
+{% assign registries = site.collections | sort: 'order' %}
+{% for registry in registries %}{% unless registry.hidden %}
 * <a href="./{{ registry.slug }}">{{ registry.name }}{% endunless %}{% endfor %}
 
 #### API access
 
-* [registries.json](../api/registries.json) - Registries meta-registry{% for registry in site.collections %}{% unless registry.hidden %}
+* [registries.json](../api/registries.json) - Registries meta-registry{% for registry in registries %}{% unless registry.hidden %}
 * <a href="../api/{{ registry.slug }}.json">{{ registry.slug }}.json</a>{% endunless %} {% endfor %}
 
 #### RSS feed

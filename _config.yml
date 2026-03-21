@@ -18,14 +18,17 @@ collections:
     name: Format Registry
     output: true
     permalink: /registry/:collection/:title
+    order: 20
   media-type:
     slug: media-type
     name: Media Type Registry
     output: true
     permalink: /registry/:collection/:title
+    order: 40
   extension:
+    order: 10
     slug: extension
-    name: Specification Extension Registry
+    name: Extension Field Registry
     output: true
     permalink: /registry/:collection/:title
   draft-feature:
@@ -33,14 +36,17 @@ collections:
     name: Draft Features Registry
     output: true
     permalink: /registry/:collection/:title
+    order: 50
   alternative-schema:
     slug: alternative-schema
     name: Alternative Schema Type Registry
     output: true
     permalink: /registry/:collection/:title
+    order: 100
   namespace:
+    order: 12
     slug: namespace
-    name: Extension Namespace Registry
+    name: Extension Field Namespace Registry
     output: true
     permalink: /registry/:collection/:title
   tag-kind:
@@ -48,6 +54,7 @@ collections:
     name: Tag Kind Registry
     output: true
     permalink: /registry/:collection/:title
+    order: 30
 exclude:
   - Gemfile
   - Gemfile.lock
