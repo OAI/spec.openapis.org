@@ -15,4 +15,4 @@ group :jekyll_plugins do
   gem "jekyll-sitemap", "~> 1.4"
 end
 
-gem "bigdecimal", "~> 4.0"
+gem "bigdecimal", "~> 4.1"
