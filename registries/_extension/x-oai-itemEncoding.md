@@ -4,7 +4,7 @@ issue:
 description: Encoding properties for individual items in a multipart request part, used when targeting OpenAPI versions prior to 3.2.
 schema:
   $ref: "#/$defs/encodingObject"
-objects: [ "mediaTypeObject" ]
+objects: [ "mediaTypeObject", "encodingObject" ]
 layout: default
 ---
 
