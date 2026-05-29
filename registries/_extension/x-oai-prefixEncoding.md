@@ -11,7 +11,9 @@ layout: default
 ---
 
 {% capture summary %}
-The `x-oai-prefixEncoding` extension defines an ordered list of encodings applied before the item encoding within a media type. In OpenAPI 3.2, this becomes the native `prefixEncoding` field on Media Type Objects.
+OpenAPI 3.2 introduced the `prefixEncoding` field on Media Type Objects to define an ordered list of encodings applied before the item encoding within a media type.
+
+The `x-oai-prefixEncoding` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to define an ordered list of encodings applied before the item encoding.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 

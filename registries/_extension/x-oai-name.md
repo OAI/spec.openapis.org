@@ -9,7 +9,9 @@ layout: default
 ---
 
 {% capture summary %}
-The `x-oai-name` extension provides a unique identifier for a Server Object. In OpenAPI 3.2, this becomes the native `name` field on Server Objects.
+OpenAPI 3.2 introduced the `name` field on Server Objects to provide a unique identifier for a server.
+
+The `x-oai-name` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to provide a unique identifier for a Server Object.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 

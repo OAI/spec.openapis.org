@@ -9,7 +9,9 @@ layout: default
 ---
 
 {% capture summary %}
-The `x-oai-deprecated` extension indicates that a Security Scheme Object is deprecated and SHOULD be transitioned out of usage. In OpenAPI 3.2, this becomes the native `deprecated` field on Security Scheme Objects.
+OpenAPI 3.2 introduced the `deprecated` field on Security Scheme Objects to indicate that a security scheme is deprecated and SHOULD be transitioned out of usage.
+
+The `x-oai-deprecated` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to indicate that a Security Scheme Object is deprecated and SHOULD be transitioned out of usage.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 

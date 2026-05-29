@@ -9,7 +9,9 @@ layout: default
 ---
 
 {% capture summary %}
-The `x-oai-itemSchema` extension defines the schema for individual items within a media type, applicable to multipart or array-based content. In OpenAPI 3.2, this becomes the native `itemSchema` field on Media Type Objects.
+OpenAPI 3.2 introduced the `itemSchema` field on Media Type Objects to define the schema for individual items within a media type, applicable to multipart or array-based content.
+
+The `x-oai-itemSchema` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to define the schema for individual items within a media type.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 

@@ -10,7 +10,9 @@ layout: default
 ---
 
 {% capture summary %}
-The `x-oai-deviceAuthorizationUrl` extension specifies the URL to be used for device authorization as defined in [RFC 8628](https://www.rfc-editor.org/rfc/rfc8628). In OpenAPI 3.2, this becomes the native `deviceAuthorizationUrl` field on OAuth Flow Objects.
+OpenAPI 3.2 introduced the `deviceAuthorizationUrl` field on OAuth Flow Objects to specify the URL to be used for device authorization as defined in [RFC 8628](https://www.rfc-editor.org/rfc/rfc8628).
+
+The `x-oai-deviceAuthorizationUrl` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to specify the device authorization URL for an OAuth2 flow.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 

@@ -11,9 +11,9 @@ layout: default
 ---
 
 {% capture summary %}
-The `x-oai-additionalOperations` extension represents HTTP method operations that are not part of the standard set defined by the target OpenAPI version. For example, the HTTP QUERY method is not a standard operation in OpenAPI 3.0 or 3.1, so it is serialized under this extension.
+OpenAPI 3.2 introduced the `additionalOperations` field on Path Item Objects to represent operations for HTTP methods that are not part of the standard set defined by the Path Item Object of the target OpenAPI version. For example, the non-standard `POLL` method has no standard operation in OpenAPI 3.2, so it can be represented as an entry in the `additionalOperations` field.
 
-In OpenAPI 3.2, this becomes the native `additionalOperations` field on Path Item Objects.
+The `x-oai-additionalOperations` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to represent operations for HTTP methods that are not part of the standard set defined by the Path Item Object of the target OpenAPI version. For example, the HTTP QUERY method has no standard operation in OpenAPI 3.0 or 3.1, so it can be represented as an entry in the `x-oai-additionalOperations` extension.
 
 Each key in the object is an HTTP method name (e.g. `QUERY`) and the value is an Operation Object.
 
