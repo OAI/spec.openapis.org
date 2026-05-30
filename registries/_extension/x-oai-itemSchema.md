@@ -4,7 +4,7 @@ issue:
 description: Schema for individual items in a multipart request part, used when targeting OpenAPI versions prior to 3.2.
 schema:
   $ref: "#/$defs/schemaObject"
-objects: [ "mediaTypeObject" ]
+objects: [ "Media Type Object" ]
 layout: default
 ---
 

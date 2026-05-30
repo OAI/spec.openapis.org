@@ -6,7 +6,7 @@ schema:
   type: object
   additionalProperties:
     $ref: "#/$defs/operationObject"
-objects: [ "pathItemObject" ]
+objects: [ "Path Item Object" ]
 layout: default
 ---
 

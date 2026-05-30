@@ -4,7 +4,7 @@ issue:
 description: Indicates that a Security Scheme is deprecated, used when targeting OpenAPI versions prior to 3.2.
 schema:
   type: boolean
-objects: [ "securitySchemeObject" ]
+objects: [ "Security Scheme Object" ]
 layout: default
 ---
 

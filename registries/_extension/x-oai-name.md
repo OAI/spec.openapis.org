@@ -4,7 +4,7 @@ issue:
 description: An identifier for a Server Object, used when targeting OpenAPI versions prior to 3.2.
 schema:
   type: string
-objects: [ "serverObject" ]
+objects: [ "Server Object" ]
 layout: default
 ---
 

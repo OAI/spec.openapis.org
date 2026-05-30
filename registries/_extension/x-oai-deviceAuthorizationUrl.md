@@ -5,7 +5,7 @@ description: The device authorization URL for an OAuth2 flow (RFC 8628), used wh
 schema:
   type: string
   format: uri
-objects: [ "oauthFlowObject" ]
+objects: [ "OAuth Flow Object" ]
 layout: default
 ---
 

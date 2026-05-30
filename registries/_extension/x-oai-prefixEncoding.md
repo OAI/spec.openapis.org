@@ -6,7 +6,7 @@ schema:
   type: array
   items:
     $ref: "#/$defs/encodingObject"
-objects: [ "mediaTypeObject" ]
+objects: [ "Media Type Object" ]
 layout: default
 ---
 
