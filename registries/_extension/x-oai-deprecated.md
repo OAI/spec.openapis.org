@@ -1,0 +1,39 @@
+---
+owner: mikekistler
+issue:
+description: Indicates that a Security Scheme is deprecated, used when targeting OpenAPI versions prior to 3.2.
+schema:
+  type: boolean
+objects: [ "Security Scheme Object" ]
+layout: default
+---
+
+{% capture summary %}
+OpenAPI 3.2 introduced the `deprecated` field on Security Scheme Objects to indicate that a security scheme is deprecated and SHOULD be transitioned out of usage.
+
+The `x-oai-deprecated` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to indicate that a Security Scheme Object is deprecated and SHOULD be transitioned out of usage.
+
+It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
+
+Used by: (informational)
+
+* [Microsoft.OpenApi](https://github.com/microsoft/OpenAPI.NET) (.NET OpenAPI library)
+{% endcapture %}
+
+{% capture example %}
+```yaml
+openapi: 3.1.0
+info:
+  title: My API
+  version: 1.0.0
+components:
+  securitySchemes:
+    legacyApiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      x-oai-deprecated: true
+```
+{% endcapture %}
+
+{% include extension-entry.md summary=summary example=example %}
