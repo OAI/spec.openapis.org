@@ -1,0 +1,4 @@
+# Jekyll config file for running Jekyll locally via Docker
+# See ./CONTRIBUTING.md
+
+port: 4000

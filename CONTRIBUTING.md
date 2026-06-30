@@ -7,12 +7,42 @@ a Ruby based static site generator, with [Just the Docs](https://github.com/just
 
 ### Docker dev
 
-You can use the following Docker command to build and serve the site:
+We've built a Docker image `davidjbiesack:jekyll-site`
+
+That image contains all the apps (ruby, bundle, the jekyll gem) necessary to build/host the site locally.
+
+You can use the following Docker command to build the openapi.org local content and serve the site:
 
 ```shell
-docker run -p 4000:4000 -v $(pwd):/site bretfisher/jekyll-serve
+docker run -p 4000:4000 -v $(pwd):/site davidjbiesack/jekyll-site:1.0.0
+```
+#### Building a Docker image
+
+To build the Docker image:
+
+Ensure the Docker daemon is running (on MacOS, run the Docker UI)
+
+After checking out the `spec.openapis.org` repository:
+
+```sh
+cd spec.openapis.org
+ns=openapis.org
+ns=$USER # Uncomment this when OAI defines/owns a Docker namespace for openapis.org
+docker buildx build --tag ${ns}:jekyll-site
+docker tag $$(docker image ls | grep ${ns} | awk '{print $$2}' ) "${ns}/jekyll-site:1.0.0"
 ```
 
+From Docker UI (logged in to an account that own the ${ns} namespace), push openapis.org/jekyll-site:1.0.0 to Docker Hub
+
+If you want to update the Docker image, edit the `./Dockerfile` and build it
+
+``sh
+ns=$USER
+docker buildx build --tag ${ns}:jekyll-site
+docker tag $$(docker image ls | grep ${ns} | awk '{print $$2}' ) "${ns}/jekyll-site:1.0.0"
+```
+
+then start the image from the Docker UI
 ### Local Ruby dev
 
 You will need to set up Ruby locally to run the server and see your changes.
@@ -25,7 +55,7 @@ bundle install
 With all the gems (dependencies) installed, you can launch the jekyll server.
 
 ```bash
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve
 ```
 
 It will show output like this, and you can grab the Server address

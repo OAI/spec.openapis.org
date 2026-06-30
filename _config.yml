@@ -60,6 +60,7 @@ exclude:
   - Gemfile.lock
   - tmp
   - vendor/bundle
+  - Dockerfile
 #just_the_docs:
 #  collections:
 #    draft-feature:
