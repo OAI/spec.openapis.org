@@ -10,9 +10,18 @@ a Ruby based static site generator, with [Just the Docs](https://github.com/just
 You can use the following Docker command to build and serve the site:
 
 ```shell
-docker run -p 4000:4000 -v $(pwd):/site bretfisher/jekyll-serve
+cd spec.openapis.org
+rm Gemfile.lock # The docker image uses a different Gem version, and breaks with this one
+docker run --rm \
+  --volume="$PWD:/srv/jekyll:Z" \
+  -p '4000:4000' \
+  jekyll/jekyll \
+  jekyll serve
 ```
 
+(If `docker` is not running, check your Docker installation guide.
+On MacOS, for example, running the Docker IO will start the
+Docker daemon so the `docker` command will work.)
 ### Local Ruby dev
 
 You will need to set up Ruby locally to run the server and see your changes.
