@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: A map of regular expressions to schemas for matching property names, used when targeting OpenAPI versions that do not directly support patternProperties.
 schema:
