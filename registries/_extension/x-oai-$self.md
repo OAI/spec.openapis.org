@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: The canonical absolute URI for an OpenAPI document, used when targeting OpenAPI versions prior to 3.2.
 schema:
