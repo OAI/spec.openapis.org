@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: A map of schemas that apply when corresponding properties are present, used when targeting OpenAPI versions that do not directly support dependentSchemas.
 schema:
