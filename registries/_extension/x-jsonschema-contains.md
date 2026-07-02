@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: The JSON Schema contains subschema for array elements, used when targeting OpenAPI versions that do not directly support it.
 schema:
