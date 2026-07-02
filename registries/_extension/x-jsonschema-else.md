@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: The JSON Schema else conditional subschema, used with x-jsonschema-if when targeting OpenAPI versions that do not directly support it.
 schema:
