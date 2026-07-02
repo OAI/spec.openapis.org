@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: The maximum number of array elements that may match contains, used when targeting OpenAPI versions that do not directly support maxContains.
 schema:
