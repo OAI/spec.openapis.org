@@ -21,7 +21,7 @@ schema:
             required:
               - $ref
             properties:
-              $ref:
+              '$ref':
                 type: string
 objects: [ "Operation Object" ]
 layout: default
