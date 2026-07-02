@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: The JSON Schema unevaluatedProperties keyword, used when targeting OpenAPI versions that do not directly support it.
 schema:
