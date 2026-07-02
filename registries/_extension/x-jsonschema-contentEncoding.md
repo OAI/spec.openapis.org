@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: The JSON Schema contentEncoding annotation, used when targeting OpenAPI versions that do not directly support it.
 schema:
