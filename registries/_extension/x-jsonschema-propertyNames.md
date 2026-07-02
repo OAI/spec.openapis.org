@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: A schema applied to property names in an object, used when targeting OpenAPI versions that do not directly support propertyNames.
 schema:
