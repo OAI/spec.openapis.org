@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: The JSON Schema $anchor identifier for a schema resource, used when targeting OpenAPI versions that do not directly support it.
 schema:
