@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: A map of nested encoding definitions for an Encoding Object, used when targeting OpenAPI versions prior to 3.2.
 schema:
