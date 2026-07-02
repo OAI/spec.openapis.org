@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: A short summary for a Response Object, used when targeting OpenAPI versions prior to 3.2.
 schema:
