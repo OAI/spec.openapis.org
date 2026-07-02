@@ -1,5 +1,5 @@
 ---
-owner: mikekistler
+owner: baywet
 issue:
 description: The minimum number of array elements that must match contains, used when targeting OpenAPI versions that do not directly support minContains.
 schema:
