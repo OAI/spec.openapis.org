@@ -5,3 +5,6 @@ deploy-preview/
 node_modules/
 scripts/
 package-lock.json
+.DS_Store
+*~
+*.bak
