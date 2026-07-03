@@ -14,35 +14,19 @@ That image contains all the apps (ruby, bundle, the jekyll gem) necessary to bui
 You can use the following Docker command to build the openapi.org local content and serve the site:
 
 ```shell
-docker run -p 4000:4000 -v $(pwd):/site davidjbiesack/jekyll-site:1.0.0
-```
-#### Building a Docker image
-
-To build the Docker image:
-
-Ensure the Docker daemon is running (on MacOS, run the Docker UI)
-
-After checking out the `spec.openapis.org` repository:
-
-```sh
 cd spec.openapis.org
-ns=openapis.org
-ns=$USER # Uncomment this when OAI defines/owns a Docker namespace for openapis.org
-docker buildx build --tag ${ns}:jekyll-site
-docker tag $$(docker image ls | grep ${ns} | awk '{print $$2}' ) "${ns}/jekyll-site:1.0.0"
+rm Gemfile.lock # The docker image uses a different gem version which breaks with this one
+docker run --rm \
+  --volume="$PWD:/srv/jekyll:Z" \
+  -p '4000:4000' \
+  jekyll/jekyll \
+  jekyll serve
 ```
 
-From Docker UI (logged in to an account that own the ${ns} namespace), push openapis.org/jekyll-site:1.0.0 to Docker Hub
+(If `docker` is not running, check your Docker installation guide.
+On MacOS, for example, running the Docker IO will start the
+Docker daemon so the `docker` command will work.)
 
-If you want to update the Docker image, edit the `./Dockerfile` and build it
-
-``sh
-ns=$USER
-docker buildx build --tag ${ns}:jekyll-site
-docker tag $$(docker image ls | grep ${ns} | awk '{print $$2}' ) "${ns}/jekyll-site:1.0.0"
-```
-
-then start the image from the Docker UI
 ### Local Ruby dev
 
 You will need to set up Ruby locally to run the server and see your changes.
