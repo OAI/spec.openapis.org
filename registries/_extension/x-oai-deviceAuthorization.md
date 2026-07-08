@@ -9,9 +9,11 @@ layout: default
 ---
 
 {% capture summary %}
-OpenAPI 3.2 introduced the `deviceAuthorization` field on OAuth Flows Objects to define a device authorization OAuth2 flow.
+OpenAPI 3.2 introduced the [`deviceAuthorization`](https://spec.openapis.org/oas/v3.2.0.html#oauth-flows-device-authorization) field on OAuth Flows Objects to define a device authorization OAuth2 flow.
 
 The `x-oai-deviceAuthorization` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to define a device authorization OAuth2 flow.
+
+Use this extension only with OpenAPI versions before 3.2; OpenAPI 3.2 and later define `deviceAuthorization` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
