@@ -9,9 +9,13 @@ layout: default
 ---
 
 {% capture summary %}
-The JSON Schema `if` keyword defines a conditional subschema that controls whether `then` or `else` applies.
+JSON Schema draft-07 introduced the [`if`](https://json-schema.org/draft-07/json-schema-validation#rfc.section.6.6.1) keyword to define a conditional subschema that controls whether `then` or `else` applies.
 
 The `x-jsonschema-if` extension mirrors the JSON Schema `if` keyword when targeting OpenAPI versions where the keyword is not directly available. It is serialized as `x-jsonschema-if` so tools can preserve and process the conditional subschema.
+
+Use this extension only with JSON Schema versions before draft-07; draft-07 and later define `if` directly.
+
+Although OpenAPI 3.0 used JSON Schema draft-07, it [prohibited this keyword](https://spec.openapis.org/oas/v3.0.4.html#json-schema-keywords), so use this extension with OpenAPI 3.0.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
