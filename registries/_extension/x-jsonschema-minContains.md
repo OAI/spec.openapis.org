@@ -10,9 +10,11 @@ layout: default
 ---
 
 {% capture summary %}
-JSON Schema defines the `minContains` keyword to set the minimum number of array elements that must match `contains`.
+JSON Schema 2019-09 introduced the [`minContains`](https://json-schema.org/draft/2019-09/json-schema-validation#rfc.section.6.4.5) keyword to set the minimum number of array elements that must match `contains`.
 
 The `x-jsonschema-minContains` extension mirrors this JSON Schema keyword when targeting OpenAPI versions where the keyword is not directly available, serializing it as `x-jsonschema-minContains`.
+
+Use this extension only with JSON Schema versions before 2019-09; 2019-09 and later define `minContains` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
