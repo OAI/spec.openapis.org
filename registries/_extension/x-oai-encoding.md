@@ -11,9 +11,11 @@ layout: default
 ---
 
 {% capture summary %}
-OpenAPI 3.2 introduced the `encoding` field on Encoding Objects to define nested encoding information.
+OpenAPI 3.2 introduced the [`encoding`](https://spec.openapis.org/oas/v3.2.0.html#encoding-encoding) field on Encoding Objects to define nested encoding information.
 
 The `x-oai-encoding` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to define nested encoding information on an Encoding Object.
+
+Use this extension only with OpenAPI versions before 3.2; OpenAPI 3.2 and later define `encoding` directly.
 
 Each key in the object is the name of a nested property and the value is an Encoding Object.
 
