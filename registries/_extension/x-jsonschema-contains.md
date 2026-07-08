@@ -9,9 +9,11 @@ layout: default
 ---
 
 {% capture summary %}
-JSON Schema defines the `contains` keyword to describe a subschema that at least one array element should match.
+JSON Schema draft-06 introduced the [`contains`](https://json-schema.org/draft-06/json-schema-validation#rfc.section.6.14) keyword to describe a subschema that at least one array element should match.
 
 The `x-jsonschema-contains` extension mirrors this JSON Schema keyword when targeting OpenAPI versions where the keyword is not directly available, serializing it as `x-jsonschema-contains`.
+
+Use this extension only with JSON Schema versions before draft-06; draft-06 and later define `contains` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
