@@ -15,7 +15,6 @@ The `x-jsonschema-contentMediaType` extension mirrors this JSON Schema keyword w
 
 Use this extension only with JSON Schema versions before draft-07; draft-07 and later define `contentMediaType` directly.
 
-Although OpenAPI 3.0 used JSON Schema draft-07, it [prohibited this keyword](https://spec.openapis.org/oas/v3.0.4.html#json-schema-keywords), so use this extension with OpenAPI 3.0.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
