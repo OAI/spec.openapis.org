@@ -29,13 +29,21 @@ info:
 paths: {}
 components:
   schemas:
-    User:
+    ExtensibleResource:
+      type: object
+      patternProperties:
+        ^x-: true
+
+    Invoice:
       type: object
       allOf:
-        - type: object
-          properties:
-            id:
-              type: string
+        - $ref: '#/components/schemas/ExtensibleResource'
+      properties:
+        id:
+          type: string
+        total:
+          type: number
+          format: double
       x-jsonschema-unevaluatedProperties: false
 ```
 {% endcapture %}
