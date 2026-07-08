@@ -8,9 +8,11 @@ layout: default
 ---
 
 {% capture summary %}
-OpenAPI 3.2 introduced the `dataValue` field on Example Objects to provide structured example data as any JSON value.
+OpenAPI 3.2 introduced the [`dataValue`](https://spec.openapis.org/oas/v3.2.0.html#example-data-value) field on Example Objects to provide structured example data as any JSON value.
 
 The `x-oai-dataValue` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to provide structured example data on an Example Object.
+
+Use this extension only with OpenAPI versions before 3.2; OpenAPI 3.2 and later define `dataValue` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
