@@ -24,6 +24,10 @@ references:
     anchor: encoding-by-name
     parent: Encoding Usage and Restrictions
     parentAnchor: encoding-usage-and-restrictions
+  - section: Encoding By Position
+    anchor: encoding-by-position
+    parent: Encoding Usage and Restrictions
+    parentAnchor: encoding-usage-and-restrictions
   - section: Encoding the `x-www-form-urlencoded` Media Type
     anchor: encoding-the-x-www-form-urlencoded-media-type
     parent: Encoding Object
@@ -36,6 +40,8 @@ references:
     anchor: appendix-c-using-rfc6570-based-serialization
   - section: "Appendix E: Percent-Encoding and Form Media Types"
     anchor: appendix-e-percent-encoding-and-form-media-types
+  - section: Non-JSON Data
+    anchor: non-json-data
 layout: default
 ---
 
@@ -45,11 +51,65 @@ Web-style form data consists of name-value pairs, with duplicate names allowed, 
 
 {% capture remarks %}
 Both form media types use the [Encoding Object](https://spec.openapis.org/oas/latest.html#encoding-object) to map object properties from schema-ready data structures to name-value pairs, with special rules for arrays causing each array value to be treated as a separate pair with the same name.
-While the ordering of pairs is significant in these formats, the OAS does not (as of v3.2) provide a way to control such ordering.
 
 As of OAS v3.2, endpoint URL query strings can be modeled as a media type using `in: querystring` in the [Parameter Object](https://spec.openapis.org/oas/latest.html#parameter-object).  The query string can also be modeled using multiple `in: query` Parameter Objects through mechanisms similar to the Encoding Object.
 
 Note that URL-encoded forms have been defined by different standards organizations at different times, leading to inconsistencies regarding percent-encoding in later standards and implementations; this is addressed in detail in [Appendix E](https://spec.openapis.org/oas/latest.html#appendix-e-percent-encoding-and-form-media-types).
+
+Since v3.3, the OAS provides for a way to preserve ordering, by treating the deserialized content as an array, rather than an object.
 {% endcapture %}
 
-{% include media-type-entry.md summary=summary remarks=remarks %}
+{% capture examples %}
+
+Treating the data as an object, this data:
+
+```json
+{
+  "alpha": 1,
+  "beta": 2,
+  "gamma": [ 3, 4 ]
+}
+```
+
+... serializes as `application/x-www-form-urlencoded` to: `alpha=1&beta=2&gamma=3&gamma=4`
+
+and serializes as `multipart/form-data; boundary="4aKOX"` to:
+
+```
+--4aKOX
+Content-Disposition: form-data; name="alpha"
+
+1
+--4aKOX
+Content-Disposition: form-data; name="beta"
+
+2
+--4aKOX
+Content-Disposition: form-data; name="gamma"
+
+3
+--4aKOX
+Content-Disposition: form-data; name="gamma"
+
+4
+--4aKOX--
+```
+
+If preservation of value/part order is important, treat the data as an array, where each array item
+is an object consisting of the key/value pair:
+
+```json
+[
+  { "alpha": 1 },
+  { "beta": 2 },
+  { "gamma": 3 }
+  { "gamma": 4 }
+}
+```
+
+This distinction can be made clear to a deserializer by using `type: array` in the
+schema, using the process as described in [Non-JSON Data](https://spec.openapis.org/oas/latest#non-json-data).
+
+{% endcapture %}
+
+{% include media-type-entry.md summary=summary remarks=remarks examples=examples %}
