@@ -9,9 +9,11 @@ layout: default
 ---
 
 {% capture summary %}
-OpenAPI 3.2 introduced the `serializedValue` field on Example Objects to provide already-serialized example data.
+OpenAPI 3.2 introduced the [`serializedValue`](https://spec.openapis.org/oas/v3.2.0.html#example-serialized-value) field on Example Objects to provide already-serialized example data.
 
 The `x-oai-serializedValue` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to provide already-serialized example data on an Example Object.
+
+Use this extension only with OpenAPI versions before 3.2; OpenAPI 3.2 and later define `serializedValue` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
