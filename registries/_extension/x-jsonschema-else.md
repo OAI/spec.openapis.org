@@ -9,9 +9,13 @@ layout: default
 ---
 
 {% capture summary %}
-The JSON Schema `else` keyword defines the subschema that applies when the `if` subschema does not match.
+JSON Schema draft-07 introduced the [`else`](https://json-schema.org/draft-07/json-schema-validation#rfc.section.6.6.3) keyword to define the subschema that applies when the `if` subschema does not match.
 
-The `x-jsonschema-else` extension mirrors the JSON Schema `else` keyword when targeting OpenAPI versions where the keyword is not directly available. It is serialized as `x-jsonschema-else` so tools can preserve and process the conditional subschema alongside `x-jsonschema-if`.
+The `x-jsonschema-else` extension mirrors this JSON Schema keyword when targeting OpenAPI versions where the keyword is not directly available, serializing it as `x-jsonschema-else`.
+
+Use this extension only with JSON Schema versions before draft-07; draft-07 and later define `else` directly.
+
+Although OpenAPI 3.0 used JSON Schema draft-07, it [prohibited this keyword](https://spec.openapis.org/oas/v3.0.4.html#json-schema-keywords), so use this extension with OpenAPI 3.0.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
