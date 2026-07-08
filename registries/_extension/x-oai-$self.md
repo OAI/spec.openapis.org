@@ -10,9 +10,11 @@ layout: default
 ---
 
 {% capture summary %}
-OpenAPI 3.2 introduced the `self` field on OpenAPI Objects to identify the canonical absolute URI for an OpenAPI document.
+OpenAPI 3.2 introduced the [`$self`](https://spec.openapis.org/oas/v3.2.0.html#oas-self) field on OpenAPI Objects to identify the canonical absolute URI for an OpenAPI document.
 
 The `x-oai-$self` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to identify the canonical absolute URI for an OpenAPI document.
+
+Use this extension only with OpenAPI versions before 3.2; OpenAPI 3.2 and later define `$self` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
