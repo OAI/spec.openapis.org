@@ -9,9 +9,11 @@ layout: default
 ---
 
 {% capture summary %}
-JSON Schema defines the `contentSchema` keyword to describe the schema for decoded string content.
+JSON Schema 2019-09 introduced the [`contentSchema`](https://json-schema.org/draft/2019-09/json-schema-validation#rfc.section.8.5) annotation to describe the schema for decoded string content.
 
 The `x-jsonschema-contentSchema` extension mirrors this JSON Schema keyword when targeting OpenAPI versions where the keyword is not directly available, serializing it as `x-jsonschema-contentSchema`.
+
+Use this extension only with JSON Schema versions before 2019-09; 2019-09 and later define `contentSchema` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
