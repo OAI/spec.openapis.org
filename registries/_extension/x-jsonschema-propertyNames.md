@@ -9,9 +9,11 @@ layout: default
 ---
 
 {% capture summary %}
-The JSON Schema `propertyNames` keyword defines a schema that applies to property names in an object.
+JSON Schema draft-06 introduced the [`propertyNames`](https://json-schema.org/draft-06/json-schema-validation#rfc.section.6.22) keyword to define a schema that applies to property names in an object.
 
-The `x-jsonschema-propertyNames` extension mirrors the JSON Schema `propertyNames` keyword when targeting OpenAPI versions where the keyword is not directly available. It is serialized as `x-jsonschema-propertyNames` so tools can preserve and process property-name constraints.
+The `x-jsonschema-propertyNames` extension mirrors this JSON Schema keyword when targeting OpenAPI versions where the keyword is not directly available, serializing it as `x-jsonschema-propertyNames`.
+
+Use this extension only with JSON Schema versions before draft-06; draft-06 and later define `propertyNames` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
