@@ -11,9 +11,11 @@ layout: default
 ---
 
 {% capture summary %}
-The JSON Schema `dependentSchemas` keyword maps property names to schemas that apply when the corresponding property is present.
+JSON Schema 2019-09 introduced the [`dependentSchemas`](https://json-schema.org/draft/2019-09/json-schema-core#rfc.section.9.2.2.4) keyword to map property names to schemas that apply when the corresponding property is present.
 
-The `x-jsonschema-dependentSchemas` extension mirrors the JSON Schema `dependentSchemas` keyword when targeting OpenAPI versions where the keyword is not directly available. It is serialized as `x-jsonschema-dependentSchemas` so tools can preserve and process dependent schemas.
+The `x-jsonschema-dependentSchemas` extension mirrors this JSON Schema keyword when targeting OpenAPI versions where the keyword is not directly available, serializing it as `x-jsonschema-dependentSchemas`.
+
+Use this extension only with JSON Schema versions before 2019-09; 2019-09 and later define `dependentSchemas` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
