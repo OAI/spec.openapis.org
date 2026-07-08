@@ -11,6 +11,8 @@ layout: default
 {% capture summary %}
 The `x-jsonschema-$anchor` extension mirrors the JSON Schema `$anchor` keyword by serializing it as `x-jsonschema-$anchor` when targeting OpenAPI versions where `$anchor` is not directly available.
 
+Use this extension only with JSON Schema versions before 2019-09; 2019-09 and later define [`$anchor`](https://json-schema.org/draft/2019-09/json-schema-core#anchor) directly.
+
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
 Used by: (informational)
