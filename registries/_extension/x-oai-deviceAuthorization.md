@@ -3,7 +3,7 @@ owner: baywet
 issue:
 description: A device authorization OAuth2 flow, used when targeting OpenAPI versions prior to 3.2.
 schema:
-  type: object
+  $ref: "#/$defs/oauthFlowObject"
 objects: [ "OAuth Flows Object" ]
 layout: default
 ---
