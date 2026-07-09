@@ -1,5 +1,5 @@
 ---
-# title: Extensions Registry
+title: Extensions Registry
 layout: default
 permalink: /registry/extension/index.html
 parent: Registries
