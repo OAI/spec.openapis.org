@@ -1,8 +1,9 @@
 ---
 owner: DarrelMiller
 issue: 
-description: Extensions [created and used by Microsoft](https://github.com/microsoft/OpenAPI/blob/main/extensions/index.md)
+description: Extensions created and used by Microsoft
 layout: default
+registry: https://github.com/microsoft/OpenAPI/blob/main/extensions/index.md
 ---
 
 {% capture summary %}

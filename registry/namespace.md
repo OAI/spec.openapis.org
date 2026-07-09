@@ -20,7 +20,7 @@ to contribute or discuss a registry value.
 
 ## Values
 
-|Value|Prefix|Description|Issue|
+|Value|Prefix|Description|Registry|
 |---|---|---|---|
-{% for value in site.namespace %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | x-{{ value.slug }}-|{{ value.description }} | {% if value.issue %}<a href="https://github.com/OAI/OpenAPI-Specification/issues/{{ value.issue }}">#{{ value.issue }}</a>{% endif %} |
+{% for value in site.namespace %}| <a href="./{{ value.slug }}.html">{{ value.slug }}</a> | x-{{ value.slug }}-|{{ value.description }} | {% if value.registry %}<a href="{{ value.registry }}">Link</a>{% endif %} |
 {% endfor %}

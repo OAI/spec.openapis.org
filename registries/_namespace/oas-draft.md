@@ -3,6 +3,7 @@ owner: DarrelMiller
 issue: 
 description: Extensions created by OAI to indicate proposed changes to the OAS specification
 layout: default
+registry: ../extension/index.html
 ---
 
 {% capture summary %}

@@ -3,6 +3,7 @@ owner: marclave, hanspagel, amritk
 issue:
 description: Extensions created and used by Scalar
 layout: default
+registry: https://guides.scalar.com/scalar/scalar-api-references/openapi#openapi-specification__custom-specification-extensions
 ---
 
 {% capture summary %}
