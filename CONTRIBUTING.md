@@ -63,6 +63,25 @@ fork this repository in GitHub.
 Make a local clone of your fork and check out the
 `main` branch.
 
+### Guidelines for namespaces and extensions
+
+Try to re-use existing extensions when possible to improve interoperability.
+
+Extensions that belong to a namespace may be defined in the OpenAPI extensions registry or in an external registry administered by the namespace owner.
+
+Using the OpenAPI extensions registry provides the following benefits:
+
+- No setup required.
+- OpenAPI contributors will inform the design of the extension.
+- Better visibility.
+
+Using an external registry provides the following benefits:
+
+- No review from OpenAPI contributors required.
+- Control over branding, page layout and more.
+
+In either case, if you are using extensions with namespaces, it's a good practice to register the namespace to avoid potential future collisions.
+
 ### Add a New Extension Namespace Registry Entry
 
 Working in the `main` branch,
@@ -79,6 +98,7 @@ owner: <<Your-GitHub-username>>
 issue:
 description: <<Briefly describe your namespace>>
 layout: default
+registry: <<the url to your external registry OR ../extension/index.html>>
 ---
 
 {% capture summary %}
