@@ -13,7 +13,7 @@
         "-w", "/srv/jekyll",
         "jekyll/jekyll",
         "sh", "-c",
-        "bundle install && bundle exec jekyll serve -H 0.0.0.0"
+        "bundle install && bundle exec jekyll serve -H 0.0.0.0 --force_polling"
       ],
       "group": {
         "kind": "build",

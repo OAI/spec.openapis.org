@@ -16,7 +16,7 @@ docker run --rm \
   -e BUNDLE_PATH=/srv/jekyll/.bundle \
   -w /srv/jekyll \
   jekyll/jekyll \
-  sh -c "bundle install && bundle exec jekyll serve -H 0.0.0.0"
+  sh -c "bundle install && bundle exec jekyll serve -H 0.0.0.0 --force_polling"
 ```
 
 On Windows (PowerShell), use `$PWD` as-is; the syntax is the same.
