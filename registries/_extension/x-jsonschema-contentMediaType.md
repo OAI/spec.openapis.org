@@ -15,7 +15,6 @@ The `x-jsonschema-contentMediaType` extension mirrors this JSON Schema keyword w
 
 Use this extension only with JSON Schema versions before draft-07; draft-07 and later define `contentMediaType` directly.
 
-
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
 Used by: (informational)
