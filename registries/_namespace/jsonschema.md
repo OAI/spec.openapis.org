@@ -3,6 +3,7 @@ owner: OAI
 issue:
 description: JSON Schema keywords exposed as OpenAPI Specification Extensions for versions that do not directly support them.
 layout: default
+registry: ../extension/index.html
 ---
 
 {% capture summary %}
