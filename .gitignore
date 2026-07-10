@@ -5,3 +5,5 @@ deploy-preview/
 node_modules/
 scripts/
 package-lock.json
+*~
+*.bak
