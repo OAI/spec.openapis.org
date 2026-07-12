@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Jekyll: Serve (Docker)",
+      "type": "shell",
+      "command": "docker",
+      "args": [
+        "run", "--rm",
+        "--volume=${workspaceFolder}:/srv/jekyll:Z",
+        "-p", "4000:4000",
+        "-e", "BUNDLE_PATH=/srv/jekyll/.bundle",
+        "-w", "/srv/jekyll",
+        "jekyll/jekyll",
+        "sh", "-c",
+        "bundle install && bundle exec jekyll serve -H 0.0.0.0 --force_polling"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^.*$",
+          "file": 1,
+          "line": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^.*bundle install.*$",
+          "endsPattern": "^.*Server running.*$"
+        }
+      }
+    }
+  ]
+}

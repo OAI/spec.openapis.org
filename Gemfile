@@ -2,17 +2,19 @@
 
 source "https://rubygems.org"
 
-# gem "jekyll", "~> 4.4"
-# If you want to use GitHub Pages, remove the "gem "jekyll"" above and
-# uncomment the line below. To upgrade, run `bundle update github-pages`.
-gem "github-pages", "~> 232", group: :jekyll_plugins
-gem "webrick", "~> 1.9"
-gem "jekyll-remote-theme"
-gem "jekyll-include-cache", "~>0.2.1"
-gem "just-the-docs", "~> 0.12.0"
+gem "jekyll", "~> 4.4"
 
 group :jekyll_plugins do
-  gem "jekyll-sitemap", "~> 1.4"
+  gem "jekyll-remote-theme"
+  gem "jekyll-include-cache"
+  gem "jekyll-sitemap"
 end
 
+# Theme
+gem "just-the-docs", "~> 0.12.0"
+
+# Required for local development with Ruby 3.x
+gem "webrick", "~> 1.9"
+
+# Required for Ruby 3.4+ compatibility
 gem "bigdecimal", "~> 4.1"
