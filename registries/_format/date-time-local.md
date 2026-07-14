@@ -9,7 +9,7 @@ source: https://www.rfc-editor.org/info/rfc9557/#section-4.1
 ---
 
 {% capture summary %}
-The `{{page.slug}}` format represents a RFC9557 date-time without timezone - [RFC9557](https://www.rfc-editor.org/info/rfc9557/#section-4.1).
+The `{{page.slug}}` format represents a date-time without timezone - [RFC9557](https://www.rfc-editor.org/info/rfc9557/#section-4.1).
 {% endcapture %}
 
 {% include format-entry.md summary=summary %}
