@@ -7,7 +7,7 @@ registry: ../extension/index.html
 ---
 
 {% capture summary %}
-The `x-{{page.slug}}-` prefix is reserved for OpenAPI Specification Extensions that mirror JSON Schema keywords when targeting OpenAPI versions or JSON Schema dialects where those keywords are not directly available.
+The `x-{{page.slug}}-` prefix is intended for version 3.0 and earlier of the OpenAPI Specification, as those versions do not support changing the JSON Schema dialect for their Schema Objects. When using OpenAPI 3.1 or later, the [OpenAPI jsonSchemaDialect](https://spec.openapis.org/oas/latest#specifying-schema-dialects) field, or JSON Schema's `"$schema"` keyword, should be used instead.
 
 Extensions in this namespace are registered in the [OpenAPI Extension Registry](../extension/), like the `x-oai-` and `x-oas-` namespaces.
 {% endcapture %}
