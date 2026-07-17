@@ -15,6 +15,8 @@ The `x-jsonschema-contains` extension mirrors this JSON Schema keyword when targ
 
 Use this extension only with JSON Schema versions before draft-06; draft-06 and later define `contains` directly.
 
+Like the `x-jsonschema-` namespace, this extension is intended for OpenAPI 3.0 and earlier. When using OpenAPI 3.1 or later, the [OpenAPI `jsonSchemaDialect`](https://spec.openapis.org/oas/latest#specifying-schema-dialects) field, or JSON Schema's `"$schema"` keyword, should be used instead.
+
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
 Used by: (informational)

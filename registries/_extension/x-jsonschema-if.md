@@ -15,7 +15,7 @@ The `x-jsonschema-if` extension mirrors the JSON Schema `if` keyword when target
 
 Use this extension only with JSON Schema versions before draft-07; draft-07 and later define `if` directly.
 
-Although OpenAPI 3.0 used JSON Schema draft-07, it [prohibited this keyword](https://spec.openapis.org/oas/v3.0.4.html#json-schema-keywords), so use this extension with OpenAPI 3.0.
+Like the `x-jsonschema-` namespace, this extension is intended for OpenAPI 3.0 and earlier. When using OpenAPI 3.1 or later, the [OpenAPI `jsonSchemaDialect`](https://spec.openapis.org/oas/latest#specifying-schema-dialects) field, or JSON Schema's `"$schema"` keyword, should be used instead.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 

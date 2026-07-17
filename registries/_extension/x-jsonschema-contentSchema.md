@@ -15,6 +15,8 @@ The `x-jsonschema-contentSchema` extension mirrors this JSON Schema keyword when
 
 Use this extension only with JSON Schema versions before 2019-09; 2019-09 and later define `contentSchema` directly.
 
+Like the `x-jsonschema-` namespace, this extension is intended for OpenAPI 3.0 and earlier. When using OpenAPI 3.1 or later, the [OpenAPI `jsonSchemaDialect`](https://spec.openapis.org/oas/latest#specifying-schema-dialects) field, or JSON Schema's `"$schema"` keyword, should be used instead.
+
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
 Used by: (informational)
