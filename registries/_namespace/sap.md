@@ -3,6 +3,7 @@ owner: ralfhandl, pavelkornev
 issue: 
 description: Extensions created and used by SAP
 layout: default
+registry: https://github.com/SAP/openapi-specification
 ---
 
 {% capture summary %}

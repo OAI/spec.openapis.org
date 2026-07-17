@@ -10,17 +10,27 @@ a Ruby based static site generator, with [Just the Docs](https://github.com/just
 You can use the following Docker command to build and serve the site:
 
 ```shell
-cd spec.openapis.org
-rm Gemfile.lock # The docker image uses a different gem version which breaks with this one
 docker run --rm \
   --volume="$PWD:/srv/jekyll:Z" \
-  -p '4000:4000' \
+  -p 4000:4000 \
+  -e BUNDLE_PATH=/srv/jekyll/.bundle \
+  -w /srv/jekyll \
   jekyll/jekyll \
-  jekyll serve
+  sh -c "bundle install && bundle exec jekyll serve -H 0.0.0.0 --force_polling"
 ```
 
+On Windows (PowerShell), use `$PWD` as-is; the syntax is the same.
+
+The first run will download and install gems into `.bundle/` inside the
+repository. Subsequent runs reuse that cache and start much faster.
+
+If you are using VS Code, a pre-configured build task is included.
+Press `Ctrl+Shift+B` (or `Cmd+Shift+B` on macOS), or run
+**Tasks: Run Build Task** from the Command Palette, to start the
+container without having to type the command manually.
+
 (If `docker` is not running, check your Docker installation guide.
-On MacOS, for example, running the Docker IO will start the
+On macOS, for example, opening Docker Desktop will start the
 Docker daemon so the `docker` command will work.)
 
 ### Local Ruby dev
@@ -63,6 +73,25 @@ fork this repository in GitHub.
 Make a local clone of your fork and check out the
 `main` branch.
 
+### Guidelines for namespaces and extensions
+
+Try to re-use existing extensions when possible to improve interoperability.
+
+Extensions that belong to a namespace may be defined in the OpenAPI extensions registry or in an external registry administered by the namespace owner.
+
+Using the OpenAPI extensions registry provides the following benefits:
+
+- No setup required.
+- OpenAPI contributors will inform the design of the extension.
+- Better visibility.
+
+Using an external registry provides the following benefits:
+
+- No review from OpenAPI contributors required.
+- Control over branding, page layout and more.
+
+In either case, if you are using extensions with namespaces, it's a good practice to register the namespace to avoid potential future collisions.
+
 ### Add a New Extension Namespace Registry Entry
 
 Working in the `main` branch,
@@ -79,6 +108,7 @@ owner: <<Your-GitHub-username>>
 issue:
 description: <<Briefly describe your namespace>>
 layout: default
+registry: <<the url to your external registry OR ../extension/index.html>>
 ---
 
 {% capture summary %}

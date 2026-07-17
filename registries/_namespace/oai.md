@@ -3,6 +3,7 @@ owner: DarrelMiller
 issue: 
 description: Reserved for uses defined by the OAI
 layout: default
+registry: ../extension/index.html
 ---
 
 {% capture summary %}

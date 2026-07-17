@@ -28,3 +28,8 @@ This page also applies to any unrecognized {{ page.default_for }} media type.
 {{ include.remarks }}
 {% endif %}
 
+{% if include.examples %}
+## Examples
+
+{{ include.examples }}
+{% endif %}

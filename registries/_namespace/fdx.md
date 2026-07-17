@@ -3,6 +3,7 @@ owner: DavidBiesack
 issue:
 description: Extensions created and used by [Financial Data Exchange (FDX)](https://financialdataexchange.org)
 layout: default
+registry: ../extension/index.html
 ---
 
 {% capture summary %}
