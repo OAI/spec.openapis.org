@@ -9,9 +9,11 @@ layout: default
 ---
 
 {% capture summary %}
-OpenAPI 3.2 introduced the `summary` field on Response Objects to provide a short summary of a response.
+OpenAPI 3.2 introduced the [`summary`](https://spec.openapis.org/oas/v3.2.0.html#response-summary) field on Response Objects to provide a short summary of a response.
 
 The `x-oai-summary` extension brings this same capability to OpenAPI versions prior to 3.2, allowing you to provide a short summary of a response.
+
+Use this extension only with OpenAPI versions before 3.2; OpenAPI 3.2 and later define `summary` directly.
 
 It can appear as a property in the following objects: `{{page.objects|jsonify}}`.
 
