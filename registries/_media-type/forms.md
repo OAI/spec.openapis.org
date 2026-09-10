@@ -102,7 +102,7 @@ is an object consisting of the key/value pair:
 [
   { "alpha": 1 },
   { "beta": 2 },
-  { "gamma": 3 }
+  { "gamma": 3 },
   { "gamma": 4 }
 }
 ```
