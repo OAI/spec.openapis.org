@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8">
-<meta name="generator" content="ReSpec 35.5.1">
+<meta name="generator" content="ReSpec 37.3.6">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
@@ -16,6 +16,7 @@ dfn{cursor:pointer}
 .dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
 .dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
 .dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel .marker.cddl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
 .dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
 .dfn-panel a[href]:hover{border-bottom-width:1px}
 .dfn-panel ul{padding:0}
@@ -56,13 +57,17 @@ a.bibref{text-decoration:none}
 .respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
 }
 #references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+@media (prefers-color-scheme:dark){
+#references :target{background:color-mix(in srgb, #eaf3ff 15%, transparent)}
+}
+body:has(input[name=color-scheme][value=dark]:checked) #references :target{background:color-mix(in srgb, #eaf3ff 15%, transparent)}
 cite .bibref{font-style:italic}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
 ol.tof,ul.tof{list-style:none outside none}
 .caption{margin-top:.5em;font-style:italic}
 #issue-summary>ul{column-count:2}
-#issue-summary li{list-style:none;display:inline-block}
+#issue-summary li{list-style:none}
 details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
 details.respec-tests-details>*{padding-right:2em}
 details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
@@ -72,17 +77,19 @@ details.respec-tests-details>li{padding-left:1em}
 .self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
 aside.example .marker>a.self-link{color:inherit}
 .header-wrapper{display:flex;align-items:baseline}
-:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
-:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
-:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3,h4,h5,h6):not(:where(#toc>h2,#abstract>h2,#sotd>h2,.head>h2)):has(+a.self-link){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(:where(#toch2))+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.8;text-decoration:none}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§"}
 :is(h2,h3)+a.self-link{top:-.2em}
-:is(h4,h5,h6)+a.self-link::before{color:#000}
+:is(h2,h3)+a.self-link::before{color:var(--heading-text)}
 @media (max-width:767px){
 dd{margin-left:0}
 }
 @media print{
 .removeOnSave{display:none}
 }
+body:has(input[name=color-scheme][value=light]:checked),head:not(:has(meta[name=color-scheme][content~=dark]))+body{color-scheme:light}
+body:has(input[name=color-scheme][value=dark]:checked){color-scheme:dark}
 </style>
 
 <link rel="canonical" href="https://spec.openapis.org/oas/v3.1.0.html">
@@ -104,7 +111,7 @@ var.respec-hl{background:0 0;color:#000;box-shadow:unset}
 }
 </style>
 <style>
-var{position:relative;cursor:pointer}
+var[data-type]{position:relative}
 var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
 var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
 var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#222;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
@@ -162,6 +169,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "key": "Other versions:",
       "data": [
         {
+          "href": "https://spec.openapis.org/oas/v3.2.1.html"
+        },
+        {
           "href": "https://spec.openapis.org/oas/v3.2.0.html"
         },
         {
@@ -216,8 +226,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "generatedSubtitle": "15 February 2021"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css">
-<link rel="stylesheet" media="" href="https://www.w3.org/StyleSheets/TR/2021/dark.css" disabled=""></head>
-<body class="h-entry toc-inline"><div class="head">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)"></head>
+<body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://openapis.org/"><img crossorigin="" alt="OpenAPI Initiative" height="48" src="https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png">
   </a></p>
     <h1 id="title" class="title">OpenAPI Specification v3.1.0 </h1> <h2 id="subtitle" class="subtitle">Version 3.1.0</h2>
@@ -226,11 +236,11 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://spec.openapis.org/oas/v3.1.0.html">https://spec.openapis.org/oas/v3.1.0.html</a>
-              </dd>
+                  <a class="u-url" href="https://spec.openapis.org/oas/v3.1.0.html">https://spec.openapis.org/oas/v3.1.0.html</a>
+                </dd>
         <dt>Latest published version:</dt><dd>
-                <a href="https://spec.openapis.org/oas/latest.html">https://spec.openapis.org/oas/latest.html</a>
-              </dd>
+                  <a href="https://spec.openapis.org/oas/latest.html">https://spec.openapis.org/oas/latest.html</a>
+                </dd>
         <dt>Latest editor's draft:</dt><dd><a href="https://github.com/OAI/OpenAPI-Specification/">https://github.com/OAI/OpenAPI-Specification/</a></dd>
         
         
@@ -238,7 +248,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         
         
         
-        <dt>Editors:</dt><dd class="editor p-author h-card vcard">
+        <dt>
+                  Editors:
+                </dt><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Darrel Miller </span>
   </dd><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Jeremy Whitlock </span>
@@ -252,8 +264,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <span class="p-name fn">Uri Sarid </span>
   </dd>
         <dt>
-                Former editors:
-              </dt><dd class="editor p-author h-card vcard">
+                  Former editors:
+                </dt><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Jason Harmon </span>
   </dd><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Tony Tam </span>
@@ -262,6 +274,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         
         
         <dt>Other versions:</dt><dd>
+    <a href="https://spec.openapis.org/oas/v3.2.1.html">https://spec.openapis.org/oas/v3.2.1.html</a>
+  </dd><dd>
     <a href="https://spec.openapis.org/oas/v3.2.0.html">https://spec.openapis.org/oas/v3.2.0.html</a>
   </dd><dd>
     <a href="https://spec.openapis.org/oas/v3.1.2.html">https://spec.openapis.org/oas/v3.1.2.html</a>
@@ -399,7 +413,7 @@ OAS defines additional formats to provide fine detail for primitive data types.<
 </table>
 </section><section id="rich-text-formatting"><div class="header-wrapper"><h3 id="x4-5-rich-text-formatting"><bdi class="secno">4.5 </bdi>Rich Text Formatting</h3><a class="self-link" href="#rich-text-formatting" aria-label="Permalink for Section 4.5"></a></div>
 <p>Throughout the specification <code>description</code> fields are noted as supporting [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark" title="CommonMark Spec">CommonMark</a></cite>] markdown formatting.
-Where OpenAPI tooling renders rich text it <em class="rfc2119">MUST</em> support, at a minimum, markdown syntax as described by [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark-0.27" title="CommonMark Spec, Version 0.27">CommonMark-0.27</a></cite>]. Tooling <em class="rfc2119">MAY</em> choose to ignore some CommonMark features to address security concerns.</p>
+Where OpenAPI tooling renders rich text it <em class="rfc2119">MUST</em> support, at a minimum, markdown syntax as described by [<cite><a class="bibref" data-link-type="biblio" href="#bib-commonmark-0-27" title="CommonMark Spec, Version 0.27">CommonMark-0.27</a></cite>]. Tooling <em class="rfc2119">MAY</em> choose to ignore some CommonMark features to address security concerns.</p>
 </section><section id="relative-references-in-uris"><div class="header-wrapper"><h3 id="x4-6-relative-references-in-uris"><bdi class="secno">4.6 </bdi>Relative References in URIs</h3><a class="self-link" href="#relative-references-in-uris" aria-label="Permalink for Section 4.6"></a></div>
 <p>Unless specified otherwise, all properties that are URIs <em class="rfc2119">MAY</em> be relative references as defined by [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax">RFC3986</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-4.2">Section 4.2</a>.</p>
 <p>Relative references, including those in <a href="#reference-object"><code>Reference Objects</code></a>, <a href="#path-item-object"><code>PathItem Object</code></a> <code>$ref</code> fields, <a href="#link-object"><code>Link Object</code></a> <code>operationRef</code> fields and <a href="#example-object"><code>Example Object</code></a> <code>externalValue</code> fields, are resolved using the referring document as the Base URI according to [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax">RFC3986</a></cite>] <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-5.2">Section 5.2</a>.</p>
@@ -2738,7 +2752,7 @@ The presence of a link does not guarantee the caller’s ability to successfully
 <tr>
 <td><span id="linkParameters"></span>parameters</td>
 <td style="text-align:center">Map[<code>string</code>, Any | <a href="#runtime-expressions">{expression}</a>]</td>
-<td>A map representing parameters to pass to an operation as specified with <code>operationId</code> or identified via <code>operationRef</code>. The key is the parameter name to be used, whereas the value can be a constant or an expression to be evaluated and passed to the linked operation.  The parameter name can be qualified using the <a href="#parameterIn">parameter location</a> <code>[{in}.]{name}</code> for operations that use the same parameter name in different locations (e.g. <a href="http://path.id">path.id</a>).</td>
+<td>A map representing parameters to pass to an operation as specified with <code>operationId</code> or identified via <code>operationRef</code>. The key is the parameter name to be used, whereas the value can be a constant or an expression to be evaluated and passed to the linked operation.  The parameter name can be qualified using the <a href="#parameterIn">parameter location</a> <code>[{in}.]{name}</code> for operations that use the same parameter name in different locations (e.g. path.id).</td>
 </tr>
 <tr>
 <td><span id="linkRequestBody"></span>requestBody</td>
@@ -4221,10 +4235,10 @@ While not part of the specification itself, certain libraries <em class="rfc2119
 </section><section id="references" class="appendix"><div class="header-wrapper"><h2 id="b-references"><bdi class="secno">B. </bdi>References</h2><a class="self-link" href="#references" aria-label="Permalink for Appendix B."></a></div><section id="normative-references"><div class="header-wrapper"><h3 id="b-1-normative-references"><bdi class="secno">B.1 </bdi>Normative references</h3><a class="self-link" href="#normative-references" aria-label="Permalink for Appendix B.1"></a></div>
     
     <dl class="bibliography"><dt id="bib-abnf">[ABNF]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc5234"><cite>Augmented BNF for Syntax Specifications: ABNF</cite></a>. D. Crocker, Ed.; P. Overell.  IETF. January 2008. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc5234">https://www.rfc-editor.org/rfc/rfc5234</a>
+      <a href="https://www.rfc-editor.org/info/rfc5234/"><cite>Augmented BNF for Syntax Specifications: ABNF</cite></a>. D. Crocker, Ed.; P. Overell.  IETF. January 2008. Internet Standard. URL: <a href="https://www.rfc-editor.org/info/rfc5234/">https://www.rfc-editor.org/info/rfc5234/</a>
     </dd><dt id="bib-commonmark">[CommonMark]</dt><dd>
       <a href="https://spec.commonmark.org/"><cite>CommonMark Spec</cite></a>. URL: <a href="https://spec.commonmark.org/">https://spec.commonmark.org/</a>
-    </dd><dt id="bib-commonmark-0.27">[CommonMark-0.27]</dt><dd>
+    </dd><dt id="bib-commonmark-0-27">[CommonMark-0.27]</dt><dd>
       <a href="https://spec.commonmark.org/0.27/"><cite>CommonMark Spec, Version 0.27</cite></a>. John MacFarlane. 18 November 2016. URL: <a href="https://spec.commonmark.org/0.27/">https://spec.commonmark.org/0.27/</a>
     </dd><dt id="bib-iana-http-authschemes">[IANA-HTTP-AUTHSCHEMES]</dt><dd>
       <a href="https://www.iana.org/assignments/http-authschemes/"><cite>Hypertext Transfer Protocol (HTTP) Authentication Scheme Registry</cite></a>.  IANA. URL: <a href="https://www.iana.org/assignments/http-authschemes/">https://www.iana.org/assignments/http-authschemes/</a>
@@ -4235,25 +4249,25 @@ While not part of the specification itself, certain libraries <em class="rfc2119
     </dd><dt id="bib-json-schema-validation-2020-12">[JSON-Schema-Validation-2020-12]</dt><dd>
       <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01"><cite>JSON Schema Validation: A Vocabulary for Structural Validation of JSON. Draft 2020-12</cite></a>. Austin Wright; Henry Andrews; Ben Hutton.  Internet Engineering Task Force (IETF). 10 June 2022. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01">https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-01</a>
     </dd><dt id="bib-rfc1866">[RFC1866]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc1866"><cite>Hypertext Markup Language - 2.0</cite></a>. T. Berners-Lee; D. Connolly.  IETF. November 1995. Historic. URL: <a href="https://www.rfc-editor.org/rfc/rfc1866">https://www.rfc-editor.org/rfc/rfc1866</a>
+      <a href="https://www.rfc-editor.org/info/rfc1866/"><cite>Hypertext Markup Language - 2.0</cite></a>. T. Berners-Lee; D. Connolly.  IETF. November 1995. Historic. URL: <a href="https://www.rfc-editor.org/info/rfc1866/">https://www.rfc-editor.org/info/rfc1866/</a>
     </dd><dt id="bib-rfc2045">[RFC2045]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc2045"><cite>Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</cite></a>. N. Freed; N. Borenstein.  IETF. November 1996. Draft Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc2045">https://www.rfc-editor.org/rfc/rfc2045</a>
+      <a href="https://www.rfc-editor.org/info/rfc2045/"><cite>Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</cite></a>. N. Freed; N. Borenstein.  IETF. November 1996. Draft Standard. URL: <a href="https://www.rfc-editor.org/info/rfc2045/">https://www.rfc-editor.org/info/rfc2045/</a>
     </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
+      <a href="https://www.rfc-editor.org/info/rfc2119/"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/info/rfc2119/">https://www.rfc-editor.org/info/rfc2119/</a>
     </dd><dt id="bib-rfc3986">[RFC3986]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
+      <a href="https://www.rfc-editor.org/info/rfc3986/"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/info/rfc3986/">https://www.rfc-editor.org/info/rfc3986/</a>
     </dd><dt id="bib-rfc4648">[RFC4648]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc4648"><cite>The Base16, Base32, and Base64 Data Encodings</cite></a>. S. Josefsson.  IETF. October 2006. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc4648">https://www.rfc-editor.org/rfc/rfc4648</a>
+      <a href="https://www.rfc-editor.org/info/rfc4648/"><cite>The Base16, Base32, and Base64 Data Encodings</cite></a>. S. Josefsson.  IETF. October 2006. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc4648/">https://www.rfc-editor.org/info/rfc4648/</a>
     </dd><dt id="bib-rfc6570">[RFC6570]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc6570"><cite>URI Template</cite></a>. J. Gregorio; R. Fielding; M. Hadley; M. Nottingham; D. Orchard.  IETF. March 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6570">https://www.rfc-editor.org/rfc/rfc6570</a>
+      <a href="https://www.rfc-editor.org/info/rfc6570/"><cite>URI Template</cite></a>. J. Gregorio; R. Fielding; M. Hadley; M. Nottingham; D. Orchard.  IETF. March 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc6570/">https://www.rfc-editor.org/info/rfc6570/</a>
     </dd><dt id="bib-rfc6749">[RFC6749]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc6749"><cite>The OAuth 2.0 Authorization Framework</cite></a>. D. Hardt, Ed. IETF. October 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6749">https://www.rfc-editor.org/rfc/rfc6749</a>
+      <a href="https://www.rfc-editor.org/info/rfc6749/"><cite>The OAuth 2.0 Authorization Framework</cite></a>. D. Hardt, Ed. IETF. October 2012. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc6749/">https://www.rfc-editor.org/info/rfc6749/</a>
     </dd><dt id="bib-rfc6838">[RFC6838]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc6838"><cite>Media Type Specifications and Registration Procedures</cite></a>. N. Freed; J. Klensin; T. Hansen.  IETF. January 2013. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>
+      <a href="https://www.rfc-editor.org/info/rfc6838/"><cite>Media Type Specifications and Registration Procedures</cite></a>. N. Freed; J. Klensin; T. Hansen.  IETF. January 2013. Best Current Practice. URL: <a href="https://www.rfc-editor.org/info/rfc6838/">https://www.rfc-editor.org/info/rfc6838/</a>
     </dd><dt id="bib-rfc6901">[RFC6901]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc6901"><cite>JavaScript Object Notation (JSON) Pointer</cite></a>. P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed. IETF. April 2013. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc6901">https://www.rfc-editor.org/rfc/rfc6901</a>
+      <a href="https://www.rfc-editor.org/info/rfc6901/"><cite>JavaScript Object Notation (JSON) Pointer</cite></a>. P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed. IETF. April 2013. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc6901/">https://www.rfc-editor.org/info/rfc6901/</a>
     </dd><dt id="bib-rfc7159">[RFC7159]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc7159"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed. IETF. March 2014. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7159">https://www.rfc-editor.org/rfc/rfc7159</a>
+      <a href="https://www.rfc-editor.org/info/rfc7159/"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed. IETF. March 2014. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc7159/">https://www.rfc-editor.org/info/rfc7159/</a>
     </dd><dt id="bib-rfc7230">[RFC7230]</dt><dd>
       <a href="https://httpwg.org/specs/rfc7230.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. R. Fielding, Ed.; J. Reschke, Ed. IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7230.html">https://httpwg.org/specs/rfc7230.html</a>
     </dd><dt id="bib-rfc7231">[RFC7231]</dt><dd>
@@ -4261,9 +4275,9 @@ While not part of the specification itself, certain libraries <em class="rfc2119
     </dd><dt id="bib-rfc7235">[RFC7235]</dt><dd>
       <a href="https://httpwg.org/specs/rfc7235.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Authentication</cite></a>. R. Fielding, Ed.; J. Reschke, Ed. IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7235.html">https://httpwg.org/specs/rfc7235.html</a>
     </dd><dt id="bib-rfc7578">[RFC7578]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc7578"><cite>Returning Values from Forms: multipart/form-data</cite></a>. L. Masinter.  IETF. July 2015. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7578">https://www.rfc-editor.org/rfc/rfc7578</a>
+      <a href="https://www.rfc-editor.org/info/rfc7578/"><cite>Returning Values from Forms: multipart/form-data</cite></a>. L. Masinter.  IETF. July 2015. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc7578/">https://www.rfc-editor.org/info/rfc7578/</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
+      <a href="https://www.rfc-editor.org/info/rfc8174/"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/info/rfc8174/">https://www.rfc-editor.org/info/rfc8174/</a>
     </dd><dt id="bib-spdx-licenses">[SPDX-Licenses]</dt><dd>
       <a href="https://spdx.org/licenses/"><cite>SPDX License List</cite></a>.  Linux Foundation. URL: <a href="https://spdx.org/licenses/">https://spdx.org/licenses/</a>
     </dd><dt id="bib-yaml">[YAML]</dt><dd>
@@ -4276,6 +4290,7 @@ While not part of the specification itself, certain libraries <em class="rfc2119
       <div>
         <a class="self-link" href="#dfn-definitions" aria-label="Permalink for definition: Definitions. Activate to close this dialog.">Permalink</a>
          
+        
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -4286,6 +4301,7 @@ While not part of the specification itself, certain libraries <em class="rfc2119
       <div>
         <a class="self-link" href="#dfn-openapi-document" aria-label="Permalink for definition: OpenAPI Document. Activate to close this dialog.">Permalink</a>
          
+        
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -4296,6 +4312,7 @@ While not part of the specification itself, certain libraries <em class="rfc2119
       <div>
         <a class="self-link" href="#dfn-path-templating" aria-label="Permalink for definition: Path Templating. Activate to close this dialog.">Permalink</a>
          
+        
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -4306,6 +4323,7 @@ While not part of the specification itself, certain libraries <em class="rfc2119
       <div>
         <a class="self-link" href="#dfn-media-types" aria-label="Permalink for definition: Media Types. Activate to close this dialog.">Permalink</a>
          
+        
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -4316,6 +4334,7 @@ While not part of the specification itself, certain libraries <em class="rfc2119
       <div>
         <a class="self-link" href="#dfn-http-status-codes" aria-label="Permalink for definition: HTTP Status Codes. Activate to close this dialog.">Permalink</a>
          
+        
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -4336,9 +4355,12 @@ function setupVarHighlighter() {
     .forEach(varElem => varElem.addEventListener("click", highlightListener));
 }
 
+/**
+ * @param {MouseEvent} ev
+ */
 function highlightListener(ev) {
   ev.stopPropagation();
-  const { target: varElem } = ev;
+  const varElem = /** @type {HTMLElement} */ (ev.target);
   const hightligtedElems = highlightVars(varElem);
   const resetListener = () => {
     const hlColor = getHighlightColor(varElem);
@@ -4361,6 +4383,9 @@ const HL_COLORS = new Map([
   ["respec-hl-c7", true],
 ]);
 
+/**
+ * @param {HTMLElement} target
+ */
 function getHighlightColor(target) {
   // return current colors if applicable
   const { value } = target.classList;
@@ -4375,9 +4400,15 @@ function getHighlightColor(target) {
   return [...HL_COLORS.keys()].find(c => HL_COLORS.get(c)) || "respec-hl-c1";
 }
 
+/**
+ * @param {HTMLElement} varElem
+ */
 function highlightVars(varElem) {
   const textContent = norm(varElem.textContent);
-  const parent = varElem.closest(".algorithm, section");
+  const parent = /** @type {HTMLElement} */ (
+    varElem.closest(".algorithm, section")
+  );
+  if (!parent) return [];
   const highlightColor = getHighlightColor(varElem);
 
   const varsToHighlight = [...parent.querySelectorAll("var")].filter(
@@ -4400,12 +4431,20 @@ function highlightVars(varElem) {
   return varsToHighlight;
 }
 
+/**
+ * @param {HTMLElement} el
+ * @param {string} highlightColor
+ */
 function removeHighlight(el, highlightColor) {
   el.classList.remove("respec-hl", highlightColor);
   // clean up empty class attributes so they don't come in export
   if (!el.classList.length) el.removeAttribute("class");
 }
 
+/**
+ * @param {HTMLElement} elem
+ * @param {string} highlightColor
+ */
 function addHighlight(elem, highlightColor) {
   elem.classList.add("respec-hl", highlightColor);
 }
@@ -4433,8 +4472,11 @@ function setupPanel() {
 }
 
 function panelListener() {
-  /** @type {HTMLElement} */
+  /** @type {HTMLElement | null} */
   let panel = null;
+  /**
+   * @param {KeyboardEvent|MouseEvent} event
+   */
   return event => {
     const { target, type } = event;
 
@@ -4442,24 +4484,34 @@ function panelListener() {
 
     // For keys, we only care about Enter key to activate the panel
     // otherwise it's activated via a click.
-    if (type === "keydown" && event.key !== "Enter") return;
+    if (
+      type === "keydown" &&
+      /** @type {KeyboardEvent} */ (event).key !== "Enter"
+    )
+      return;
 
     const action = deriveAction(event);
 
     switch (action) {
       case "show": {
         hidePanel(panel);
-        /** @type {HTMLElement} */
+        /** @type {HTMLElement | null} */
         const dfn = target.closest("dfn, .index-term");
+        if (!dfn?.id) break;
         panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
-        const coords = deriveCoordinates(event);
+        if (!panel) break;
+        const coords = deriveCoordinates(
+          /** @type {MouseEvent|KeyboardEvent} */ (event)
+        );
         displayPanel(dfn, panel, coords);
         break;
       }
       case "dock": {
-        panel.style.left = null;
-        panel.style.top = null;
-        panel.classList.add("docked");
+        if (panel) {
+          panel.style.left = "";
+          panel.style.top = "";
+          panel.classList.add("docked");
+        }
         break;
       }
       case "hide": {
@@ -4510,7 +4562,8 @@ function deriveAction(event) {
     if (hitALink) {
       return target.classList.contains("self-link") ? "hide" : "dock";
     }
-    const panel = target.closest(".dfn-panel");
+
+    const panel = /** @type {HTMLElement} */ (target.closest(".dfn-panel"));
     return panel.classList.contains("docked") ? "hide" : "none";
   }
   if (document.querySelector(".dfn-panel:not([hidden])")) {
@@ -4554,9 +4607,9 @@ function displayPanel(dfn, panel, { x, y }) {
     const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
     const newCaretOffset = left - newLeft;
     panel.style.left = `${newLeft}px`;
-    /** @type {HTMLElement} */
+    /** @type {HTMLElement | null} */
     const caret = panel.querySelector(".caret");
-    caret.style.left = `${newCaretOffset}px`;
+    if (caret) caret.style.left = `${newCaretOffset}px`;
   }
 
   // As it's a dialog, we trap focus.
@@ -4605,6 +4658,9 @@ function trapFocus(panel, dfn) {
 function createTrapListener(anchors, panel, dfn) {
   const lastIndex = anchors.length - 1;
   let currentIndex = 0;
+  /**
+   * @param {KeyboardEvent} event
+   */
   return event => {
     switch (event.key) {
       // Hitting "Tab" traps us in a nice loop around elements.
@@ -4634,7 +4690,7 @@ function createTrapListener(anchors, panel, dfn) {
   };
 }
 
-/** @param {HTMLElement} panel */
+/** @param {HTMLElement | null} panel */
 function hidePanel(panel) {
   if (!panel) return;
   panel.hidden = true;
