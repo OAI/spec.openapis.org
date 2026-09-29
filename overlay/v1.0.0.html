@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8">
-<meta name="generator" content="ReSpec 35.6.1">
+<meta name="generator" content="ReSpec 37.4.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
@@ -16,6 +16,7 @@ dfn{cursor:pointer}
 .dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
 .dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
 .dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel .marker.cddl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
 .dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
 .dfn-panel a[href]:hover{border-bottom-width:1px}
 .dfn-panel ul{padding:0}
@@ -37,6 +38,8 @@ dfn{cursor:pointer}
 
 
 <title>Overlay Specification v1.0.0</title>
+<meta name="description" content="The OpenAPI Overlay Specification defines a document format for information that augments an existing OpenAPI description yet remains separate from the OpenAPI description's source document(s).">
+
 <meta name="color-scheme" content="light dark">
 <style id="respec-mainstyle">
 @keyframes pop{
@@ -54,13 +57,17 @@ a.bibref{text-decoration:none}
 .respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
 }
 #references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+@media (prefers-color-scheme:dark){
+#references :target{background:color-mix(in srgb, #eaf3ff 15%, transparent)}
+}
+body:has(input[name=color-scheme][value=dark]:checked) #references :target{background:color-mix(in srgb, #eaf3ff 15%, transparent)}
 cite .bibref{font-style:italic}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
 ol.tof,ul.tof{list-style:none outside none}
 .caption{margin-top:.5em;font-style:italic}
 #issue-summary>ul{column-count:2}
-#issue-summary li{list-style:none;display:inline-block}
+#issue-summary li{list-style:none}
 details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
 details.respec-tests-details>*{padding-right:2em}
 details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
@@ -70,20 +77,21 @@ details.respec-tests-details>li{padding-left:1em}
 .self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
 aside.example .marker>a.self-link{color:inherit}
 .header-wrapper{display:flex;align-items:baseline}
-:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
-:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
-:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3,h4,h5,h6):not(:where(#toc>h2,#abstract>h2,#sotd>h2,.head>h2)):has(+a.self-link){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(:where(#toch2))+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.8;text-decoration:none}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§"}
 :is(h2,h3)+a.self-link{top:-.2em}
-:is(h4,h5,h6)+a.self-link::before{color:#000}
+:is(h2,h3)+a.self-link::before{color:var(--heading-text)}
 @media (max-width:767px){
 dd{margin-left:0}
 }
 @media print{
 .removeOnSave{display:none}
 }
+body:has(input[name=color-scheme][value=light]:checked),head:not(:has(meta[name=color-scheme][content~=dark]))+body{color-scheme:light}
+body:has(input[name=color-scheme][value=dark]:checked){color-scheme:dark}
 </style>
 
-<meta name="description" content="The Overlay Specification defines a document format for information that augments an existing [OpenAPI] description yet remains separate from the OpenAPI description’s source document(s).">
 <link rel="canonical" href="https://spec.openapis.org/overlay/v1.0.0.html">
 <style>
 var:hover{text-decoration:underline;cursor:pointer}
@@ -103,7 +111,7 @@ var.respec-hl{background:0 0;color:#000;box-shadow:unset}
 }
 </style>
 <style>
-var{position:relative;cursor:pointer}
+var[data-type]{position:relative}
 var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
 var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
 var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#222;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
@@ -154,6 +162,17 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   ],
   "otherLinks": [
     {
+      "key": "Other versions:",
+      "data": [
+        {
+          "href": "https://spec.openapis.org/overlay/v1.2.0.html"
+        },
+        {
+          "href": "https://spec.openapis.org/overlay/v1.1.0.html"
+        }
+      ]
+    },
+    {
       "key": "Participate",
       "data": [
         {
@@ -179,21 +198,21 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "generatedSubtitle": "17 October 2024"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css">
-<link rel="stylesheet" media="" href="https://www.w3.org/StyleSheets/TR/2021/dark.css" disabled=""></head>
-<body class="h-entry toc-inline"><div class="head">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)"></head>
+<body class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://openapis.org/"><img crossorigin="" alt="OpenAPI Initiative" height="48" src="https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/master/graphics/bitmap/OpenAPI_Logo_Pantone.png">
   </a></p>
-    <h1 id="title" class="title">Overlay Specification v1.0.0 </h1> <h2 id="subtitle" class="subtitle">Version 1.0.0</h2>
+    <h1 id="title" class="title">Overlay Specification v1.0.0</h1> <h2 id="subtitle" class="subtitle">Version 1.0.0</h2>
     <p id="w3c-state"> <time class="dt-published" datetime="2024-10-17">17 October 2024</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://spec.openapis.org/overlay/v1.0.0.html">https://spec.openapis.org/overlay/v1.0.0.html</a>
-              </dd>
+                  <a class="u-url" href="https://spec.openapis.org/overlay/v1.0.0.html">https://spec.openapis.org/overlay/v1.0.0.html</a>
+                </dd>
         <dt>Latest published version:</dt><dd>
-                <a href="https://spec.openapis.org/overlay/latest.html">https://spec.openapis.org/overlay/latest.html</a>
-              </dd>
+                  <a href="https://spec.openapis.org/overlay/latest.html">https://spec.openapis.org/overlay/latest.html</a>
+                </dd>
         <dt>Latest editor's draft:</dt><dd><a href="https://github.com/OAI/Overlay-Specification/">https://github.com/OAI/Overlay-Specification/</a></dd>
         
         
@@ -201,7 +220,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         
         
         
-        <dt>Editors:</dt><dd class="editor p-author h-card vcard">
+        <dt>
+                  Editors:
+                </dt><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Darrel Miller </span>
   </dd><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Greg Dennis </span>
@@ -220,7 +241,11 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         
         
         
-        <dt>Participate</dt><dd>
+        <dt>Other versions:</dt><dd>
+    <a href="https://spec.openapis.org/overlay/v1.2.0.html">https://spec.openapis.org/overlay/v1.2.0.html</a>
+  </dd><dd>
+    <a href="https://spec.openapis.org/overlay/v1.1.0.html">https://spec.openapis.org/overlay/v1.1.0.html</a>
+  </dd><dt>Participate</dt><dd>
     <a href="https://github.com/OAI/Overlay-Specification/">GitHub OAI/Overlay-Specification</a>
   </dd><dd>
     <a href="https://github.com/OAI/Overlay-Specification/issues">File a bug</a>
@@ -237,9 +262,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <hr title="Separator for header">
   </div><style>
 #respec-ui {     visibility: hidden; }  #title {     color: #578000; }  #subtitle {     color: #578000; }  .dt-published {     color: #578000; }  .dt-published::before {     content: "Published "; }  h1, h2, h3, h4, h5, h6 {     color: #578000;     font-weight: normal;     font-style: normal; }  a[href] {     color: #45512c; }  body:not(.toc-inline) #toc h2 {     color: #45512c; }  table {     display: block;     width: 100%;     overflow: auto; }  table th {     font-weight: 600; }  table th, table td {     padding: 6px 13px;     border: 1px solid #dfe2e5; }  table tr {     background-color: #fff;     border-top: 1px solid #c6cbd1; }  table tr:nth-child(2n) {     background-color: #f6f8fa; }  pre {     background-color: #f6f8fa !important; }  code {     color: #c83500 }  th code {     color: inherit }  a.bibref {     text-decoration: underline; }  body.darkmode {     --toclink-underline: #6a9000;     --toclink-visited-underline: #fff; }  body.darkmode a, body.darkmode .tocxref, body.darkmode .u-url {     color: #6a9000; }  body.darkmode code {     color: #e66c33; }  body.darkmode:not(.toc-inline) #toc h2, body.darkmode h1, body.darkmode h2, body.darkmode h3, body.darkmode h4, body.darkmode h5, body.darkmode h6, body.darkmode #title, body.darkmode #subtitle, body.darkmode .toc-inline, body.darkmode .dt-published {     color: #7bb01c; }  body.darkmode pre, body.darkmode table tr:nth-child(2n), body.darkmode table tr {     background-color: #1e1e1e !important;     color: #dcdcdc; }  body.darkmode img {     background: transparent; }  body.darkmode .logo img {     display: none; }  body.darkmode .logo::before {     content: "";     display: inline-block;     height: 48px;     width: 175px;     background: url("https://raw.githubusercontent.com/OAI/OpenAPI-Style-Guide/refs/heads/main/graphics/bitmap/OpenAPI_Logo_Pantone.png") no-repeat center / contain;     vertical-align: middle; }  /** This contains the content of the https://www.w3.org/StyleSheets/TR/2021/dark.css file */ body.darkmode {     --text: #ddd;     --bg: black;      /* Absolute URLs due to https://bugs.webkit.org/show_bug.cgi?id=230243 */     --unofficial-watermark: url(https://www.w3.org/StyleSheets/TR/2021/logos/UD-watermark-dark-unofficial);     --draft-watermark: url(https://www.w3.org/StyleSheets/TR/2021/logos/UD-watermark-dark-draft);      --logo-bg: #1a5e9a;     --logo-active-bg: #c00;     --logo-text: white;      --tocnav-normal-text: #999;     --tocnav-normal-bg: var(--bg);     --tocnav-hover-text: var(--tocnav-normal-text);     --tocnav-hover-bg: #080808;     --tocnav-active-text: #f44;     --tocnav-active-bg: var(--tocnav-normal-bg);      --tocsidebar-text: var(--text);     --tocsidebar-bg: #080808;     --tocsidebar-shadow: rgba(255,255,255,.1);     --tocsidebar-heading-text: hsla(203,20%,40%,.7);      --toclink-text: var(--text);     --toclink-underline: #6af;     --toclink-visited-text: var(--toclink-text);     --toclink-visited-underline: #054572;      --heading-text: #8af;      --hr-text: var(--text);      --algo-border: #456;      --del-text: #f44;     --del-bg: transparent;     --ins-text: #4a4;     --ins-bg: transparent;      --a-normal-text: #6af;     --a-normal-underline: #555;     --a-visited-text: var(--a-normal-text);     --a-visited-underline: var(--a-normal-underline);     --a-hover-bg: rgba(25%, 25%, 25%, .2);     --a-active-text: #f44;     --a-active-underline: var(--a-active-text);      --borderedblock-bg: rgba(255, 255, 255, .05);      --blockquote-border: silver;     --blockquote-bg: var(--borderedblock-bg);     --blockquote-text: currentcolor;      --issue-border: #e05252;     --issue-bg: var(--borderedblock-bg);     --issue-text: var(--text);     --issueheading-text: hsl(0deg, 70%, 70%);      --example-border: hsl(50deg, 90%, 60%);     --example-bg: var(--borderedblock-bg);     --example-text: var(--text);     --exampleheading-text: hsl(50deg, 70%, 70%);      --note-border: hsl(120deg, 100%, 35%);     --note-bg: var(--borderedblock-bg);     --note-text: var(--text);     --noteheading-text: hsl(120, 70%, 70%);     --notesummary-underline: silver;      --advisement-border: orange;     --advisement-bg: #222218;     --advisement-text: var(--text);     --advisementheading-text: #f84;      --amendment-border: #330099;     --amendment-bg: var(--borderedblock-bg);     --amendment-text: var(--text);     --amendmentheading-text: #a086ff;      --amendment-border: #330099;     --amendment-bg: #080010;     --amendment-text: var(--text);     --amendmentheading-text: #cc00ff;      --warning-border: red;     --warning-bg: hsla(40,100%,20%,0.95);     --warning-text: var(--text);      --def-border: #8ccbf2;     --def-bg: #080818;     --def-text: var(--text);     --defrow-border: #136;      --datacell-border: silver;      --indexinfo-text: #aaa;      --indextable-hover-text: var(--text);     --indextable-hover-bg: #181818;      --outdatedspec-bg: rgba(255, 255, 255, .5);     --outdatedspec-text: black;     --outdated-bg: maroon;     --outdated-text: white;     --outdated-shadow: red;      --editedrec-bg: darkorange; }/**  * GitHub Gist Theme  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro  */  .hljs {   display: block;   background: white;   padding: 0.5em;   color: #333333;   overflow-x: auto; }  .hljs-comment, .hljs-meta {   color: #727070; }  .hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {   color: #c74700; }  .hljs-number {   color: #005e5e; }  .hljs-keyword, .hljs-selector-tag, .hljs-type {   color: #a71d5d; }  .hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {   color: #007aa2; }  .hljs-section, .hljs-name {   color: #4b7c46; }  .hljs-tag {   color: #333333; }  .hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {   color: #795da3; }  .hljs-addition {   color: #55a532;   background-color: #eaffea; }  .hljs-deletion {   color: #bd2c00;   background-color: #ffecec; }  .hljs-link {   text-decoration: underline; } 
-</style><section class="notoc introductory" id="abstract"><h2>What is the Overlay Specification?</h2>
-<p>The Overlay Specification defines a document format for information that augments an existing [<cite><a class="bibref" data-link-type="biblio" href="#bib-openapi" title="OpenAPI Specification">OpenAPI</a></cite>] description yet remains separate from the OpenAPI description’s source document(s).</p>
-</section><section class="override introductory notoc" id="sotd" data-max-toc="0"><h2>Status of This Document</h2>The source-of-truth for this specification is the HTML file referenced above as <em>This version</em>.</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay-specification"><bdi class="secno">1. </bdi>Overlay Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">1.1 </bdi>Version 1.0.0</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#definitions"><bdi class="secno">3. </bdi><span>Definitions</span></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay"><bdi class="secno">3.1 </bdi><span>Overlay</span></a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">4. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#versions"><bdi class="secno">4.1 </bdi>Versions</a></li><li class="tocline"><a class="tocxref" href="#format"><bdi class="secno">4.2 </bdi>Format</a></li><li class="tocline"><a class="tocxref" href="#relative-references-in-uris"><bdi class="secno">4.3 </bdi>Relative References in URIs</a></li><li class="tocline"><a class="tocxref" href="#schema"><bdi class="secno">4.4 </bdi>Schema</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay-object"><bdi class="secno">4.4.1 </bdi>Overlay Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields"><bdi class="secno">4.4.1.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#info-object"><bdi class="secno">4.4.2 </bdi>Info Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-0"><bdi class="secno">4.4.2.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#action-object"><bdi class="secno">4.4.3 </bdi>Action Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-1"><bdi class="secno">4.4.3.1 </bdi>Fixed Fields</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">4.5 </bdi>Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#structured-overlay-example"><bdi class="secno">4.5.1 </bdi>Structured Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#targeted-overlay-example"><bdi class="secno">4.5.2 </bdi>Targeted Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#wildcard-overlay-example"><bdi class="secno">4.5.3 </bdi>Wildcard Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#array-modification-example"><bdi class="secno">4.5.4 </bdi>Array Modification Example</a></li><li class="tocline"><a class="tocxref" href="#traits-example"><bdi class="secno">4.5.5 </bdi>Traits Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification-extensions"><bdi class="secno">4.6 </bdi>Specification Extensions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#appendix-a-revision-history"><bdi class="secno">A. </bdi>Appendix A: Revision History</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+</style><section class="notoc introductory" id="abstract"><h2>What is the OAI Overlay?</h2>The Overlay Specification defines a document format for information that augments an existing [<cite><a class="bibref" data-link-type="biblio" href="#bib-openapi" title="OpenAPI Specification">OpenAPI</a></cite>] description yet remains separate from the OpenAPI description's source document(s).</section><section class="override introductory notoc" id="sotd" data-max-toc="0"><h2>Status of This Document</h2>The source-of-truth for this specification is the HTML file referenced above as <em>This version</em>.</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay-specification"><bdi class="secno">1. </bdi>Overlay Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">1.1 </bdi>Version 1.0.0</a></li></ol></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#definitions"><bdi class="secno">3. </bdi><span>Definitions</span></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay"><bdi class="secno">3.1 </bdi><span>Overlay</span></a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification"><bdi class="secno">4. </bdi>Specification</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#versions"><bdi class="secno">4.1 </bdi>Versions</a></li><li class="tocline"><a class="tocxref" href="#format"><bdi class="secno">4.2 </bdi>Format</a></li><li class="tocline"><a class="tocxref" href="#relative-references-in-uris"><bdi class="secno">4.3 </bdi>Relative References in URIs</a></li><li class="tocline"><a class="tocxref" href="#schema"><bdi class="secno">4.4 </bdi>Schema</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#overlay-object"><bdi class="secno">4.4.1 </bdi>Overlay Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields"><bdi class="secno">4.4.1.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#info-object"><bdi class="secno">4.4.2 </bdi>Info Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-0"><bdi class="secno">4.4.2.1 </bdi>Fixed Fields</a></li></ol></li><li class="tocline"><a class="tocxref" href="#action-object"><bdi class="secno">4.4.3 </bdi>Action Object</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#fixed-fields-1"><bdi class="secno">4.4.3.1 </bdi>Fixed Fields</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">4.5 </bdi>Examples</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#structured-overlay-example"><bdi class="secno">4.5.1 </bdi>Structured Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#targeted-overlay-example"><bdi class="secno">4.5.2 </bdi>Targeted Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#wildcard-overlay-example"><bdi class="secno">4.5.3 </bdi>Wildcard Overlay Example</a></li><li class="tocline"><a class="tocxref" href="#array-modification-example"><bdi class="secno">4.5.4 </bdi>Array Modification Example</a></li><li class="tocline"><a class="tocxref" href="#traits-example"><bdi class="secno">4.5.5 </bdi>Traits Example</a></li></ol></li><li class="tocline"><a class="tocxref" href="#specification-extensions"><bdi class="secno">4.6 </bdi>Specification Extensions</a></li></ol></li><li class="tocline"><a class="tocxref" href="#appendix-a-revision-history"><bdi class="secno">A. </bdi>Appendix A: Revision History</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1 </bdi>Normative references</a></li></ol></li></ol></nav>
 <section id="overlay-specification"><div class="header-wrapper"><h2 id="x1-overlay-specification"><bdi class="secno">1. </bdi>Overlay Specification</h2><a class="self-link" href="#overlay-specification" aria-label="Permalink for Section 1."></a></div>
 <section class="override" id="conformance"><div class="header-wrapper"><h3 id="x1-1-version-1-0-0"><bdi class="secno">1.1 </bdi>Version 1.0.0</h3><a class="self-link" href="#conformance" aria-label="Permalink for Section 1.1"></a></div>
 <p>The key words “<em class="rfc2119">MUST</em>”, “<em class="rfc2119">MUST NOT</em>”, “<em class="rfc2119">REQUIRED</em>”, “<em class="rfc2119">SHALL</em>”, “<em class="rfc2119">SHALL NOT</em>”, “<em class="rfc2119">SHOULD</em>”, “<em class="rfc2119">SHOULD NOT</em>”, “<em class="rfc2119">RECOMMENDED</em>”, “<em class="rfc2119">NOT RECOMMENDED</em>”, “<em class="rfc2119">MAY</em>”, and “<em class="rfc2119">OPTIONAL</em>” in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a> [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>] when, and only when, they appear in all capitals, as shown here.</p>
@@ -540,15 +563,15 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed.</p>
     </dd><dt id="bib-openapi">[OpenAPI]</dt><dd>
       <a href="https://www.openapis.org/"><cite>OpenAPI Specification</cite></a>. Darrell Miller; Jason Harmon; Jeremy Whitlock; Marsh Gardiner; Mike Ralphson; Ron Ratovsky; Tony Tam; Uri Sarid.  OpenAPI Initiative. URL: <a href="https://www.openapis.org/">https://www.openapis.org/</a>
     </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
+      <a href="https://www.rfc-editor.org/info/rfc2119/"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/info/rfc2119/">https://www.rfc-editor.org/info/rfc2119/</a>
     </dd><dt id="bib-rfc3986">[RFC3986]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
+      <a href="https://www.rfc-editor.org/info/rfc3986/"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/info/rfc3986/">https://www.rfc-editor.org/info/rfc3986/</a>
     </dd><dt id="bib-rfc7159">[RFC7159]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc7159"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed. IETF. March 2014. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7159">https://www.rfc-editor.org/rfc/rfc7159</a>
+      <a href="https://www.rfc-editor.org/info/rfc7159/"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed. IETF. March 2014. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc7159/">https://www.rfc-editor.org/info/rfc7159/</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>
+      <a href="https://www.rfc-editor.org/info/rfc8174/"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://www.rfc-editor.org/info/rfc8174/">https://www.rfc-editor.org/info/rfc8174/</a>
     </dd><dt id="bib-rfc9535">[RFC9535]</dt><dd>
-      <a href="https://www.rfc-editor.org/rfc/rfc9535"><cite>JSONPath: Query Expressions for JSON</cite></a>. S. Gössner, Ed.; G. Normington, Ed.; C. Bormann, Ed. IETF. February 2024. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc9535">https://www.rfc-editor.org/rfc/rfc9535</a>
+      <a href="https://www.rfc-editor.org/info/rfc9535/"><cite>JSONPath: Query Expressions for JSON</cite></a>. S. Gössner, Ed.; G. Normington, Ed.; C. Bormann, Ed. IETF. February 2024. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc9535/">https://www.rfc-editor.org/info/rfc9535/</a>
     </dd><dt id="bib-yaml">[YAML]</dt><dd>
       <a href="http://yaml.org/spec/1.2/spec.html"><cite>YAML Ain’t Markup Language (YAML™) Version 1.2</cite></a>. Oren Ben-Kiki; Clark Evans; Ingy döt Net. 1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a>
     </dd></dl>
@@ -559,6 +582,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed.</p>
       <div>
         <a class="self-link" href="#dfn-definitions" aria-label="Permalink for definition: Definitions. Activate to close this dialog.">Permalink</a>
          
+        
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -569,6 +593,7 @@ The metadata <em class="rfc2119">MAY</em> be used by the clients if needed.</p>
       <div>
         <a class="self-link" href="#dfn-overlay" aria-label="Permalink for definition: Overlay. Activate to close this dialog.">Permalink</a>
          
+        
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -589,9 +614,12 @@ function setupVarHighlighter() {
     .forEach(varElem => varElem.addEventListener("click", highlightListener));
 }
 
+/**
+ * @param {MouseEvent} ev
+ */
 function highlightListener(ev) {
   ev.stopPropagation();
-  const { target: varElem } = ev;
+  const varElem = /** @type {HTMLElement} */ (ev.target);
   const hightligtedElems = highlightVars(varElem);
   const resetListener = () => {
     const hlColor = getHighlightColor(varElem);
@@ -614,6 +642,9 @@ const HL_COLORS = new Map([
   ["respec-hl-c7", true],
 ]);
 
+/**
+ * @param {HTMLElement} target
+ */
 function getHighlightColor(target) {
   // return current colors if applicable
   const { value } = target.classList;
@@ -628,9 +659,15 @@ function getHighlightColor(target) {
   return [...HL_COLORS.keys()].find(c => HL_COLORS.get(c)) || "respec-hl-c1";
 }
 
+/**
+ * @param {HTMLElement} varElem
+ */
 function highlightVars(varElem) {
   const textContent = norm(varElem.textContent);
-  const parent = varElem.closest(".algorithm, section");
+  const parent = /** @type {HTMLElement} */ (
+    varElem.closest(".algorithm, section")
+  );
+  if (!parent) return [];
   const highlightColor = getHighlightColor(varElem);
 
   const varsToHighlight = [...parent.querySelectorAll("var")].filter(
@@ -653,12 +690,20 @@ function highlightVars(varElem) {
   return varsToHighlight;
 }
 
+/**
+ * @param {HTMLElement} el
+ * @param {string} highlightColor
+ */
 function removeHighlight(el, highlightColor) {
   el.classList.remove("respec-hl", highlightColor);
   // clean up empty class attributes so they don't come in export
   if (!el.classList.length) el.removeAttribute("class");
 }
 
+/**
+ * @param {HTMLElement} elem
+ * @param {string} highlightColor
+ */
 function addHighlight(elem, highlightColor) {
   elem.classList.add("respec-hl", highlightColor);
 }
@@ -686,8 +731,11 @@ function setupPanel() {
 }
 
 function panelListener() {
-  /** @type {HTMLElement} */
+  /** @type {HTMLElement | null} */
   let panel = null;
+  /**
+   * @param {KeyboardEvent|MouseEvent} event
+   */
   return event => {
     const { target, type } = event;
 
@@ -695,24 +743,34 @@ function panelListener() {
 
     // For keys, we only care about Enter key to activate the panel
     // otherwise it's activated via a click.
-    if (type === "keydown" && event.key !== "Enter") return;
+    if (
+      type === "keydown" &&
+      /** @type {KeyboardEvent} */ (event).key !== "Enter"
+    )
+      return;
 
     const action = deriveAction(event);
 
     switch (action) {
       case "show": {
         hidePanel(panel);
-        /** @type {HTMLElement} */
+        /** @type {HTMLElement | null} */
         const dfn = target.closest("dfn, .index-term");
+        if (!dfn?.id) break;
         panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
-        const coords = deriveCoordinates(event);
+        if (!panel) break;
+        const coords = deriveCoordinates(
+          /** @type {MouseEvent|KeyboardEvent} */ (event)
+        );
         displayPanel(dfn, panel, coords);
         break;
       }
       case "dock": {
-        panel.style.left = null;
-        panel.style.top = null;
-        panel.classList.add("docked");
+        if (panel) {
+          panel.style.left = "";
+          panel.style.top = "";
+          panel.classList.add("docked");
+        }
         break;
       }
       case "hide": {
@@ -763,7 +821,8 @@ function deriveAction(event) {
     if (hitALink) {
       return target.classList.contains("self-link") ? "hide" : "dock";
     }
-    const panel = target.closest(".dfn-panel");
+
+    const panel = /** @type {HTMLElement} */ (target.closest(".dfn-panel"));
     return panel.classList.contains("docked") ? "hide" : "none";
   }
   if (document.querySelector(".dfn-panel:not([hidden])")) {
@@ -807,9 +866,9 @@ function displayPanel(dfn, panel, { x, y }) {
     const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
     const newCaretOffset = left - newLeft;
     panel.style.left = `${newLeft}px`;
-    /** @type {HTMLElement} */
+    /** @type {HTMLElement | null} */
     const caret = panel.querySelector(".caret");
-    caret.style.left = `${newCaretOffset}px`;
+    if (caret) caret.style.left = `${newCaretOffset}px`;
   }
 
   // As it's a dialog, we trap focus.
@@ -858,6 +917,9 @@ function trapFocus(panel, dfn) {
 function createTrapListener(anchors, panel, dfn) {
   const lastIndex = anchors.length - 1;
   let currentIndex = 0;
+  /**
+   * @param {KeyboardEvent} event
+   */
   return event => {
     switch (event.key) {
       // Hitting "Tab" traps us in a nice loop around elements.
@@ -887,7 +949,7 @@ function createTrapListener(anchors, panel, dfn) {
   };
 }
 
-/** @param {HTMLElement} panel */
+/** @param {HTMLElement | null} panel */
 function hidePanel(panel) {
   if (!panel) return;
   panel.hidden = true;
