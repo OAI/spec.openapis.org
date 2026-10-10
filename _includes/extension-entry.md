@@ -8,7 +8,7 @@
 ### Schema
 
 ```yaml
-{{page.schema}}
+{{page.schema|jsonify}}
 ```
 
 ### Example
